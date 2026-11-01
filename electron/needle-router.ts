@@ -28,7 +28,7 @@ export class NeedleRouter {
     private isWhistleReady = false;
 
     // Thresholds
-    private readonly safeToolConfidenceThreshold = 0.50;
+    private readonly safeToolConfidenceThreshold = 0.15;
     private readonly executeConfidenceThreshold = 0.85;
 
     // Tools exposed to Needle (safe read, app launching, or gated execution)
@@ -69,7 +69,7 @@ export class NeedleRouter {
         },
         {
             name: 'open_path',
-            description: 'Open a local folder or file with the default system application. Accepts folder names like downloads, desktop, documents, or file paths.',
+            description: 'Open a local folder or file with the default system application (e.g. Windows File Explorer). Accepts folder names like downloads, desktop, documents, or file paths.',
             parameters: {
                 type: 'object',
                 properties: {
@@ -80,22 +80,22 @@ export class NeedleRouter {
         },
         {
             name: 'open_browser',
-            description: 'Open a website URL or search the web in the default internet browser.',
+            description: 'Open a website URL or domain name (e.g. github.com, google.com, youtube.com) in the default web browser.',
             parameters: {
                 type: 'object',
                 properties: {
-                    url: { type: 'string', description: 'Full website URL starting with http or https' },
+                    url: { type: 'string', description: 'Website URL or domain name (e.g. github.com, google.com, https://...)' },
                     query: { type: 'string', description: 'Search term for web search' }
                 }
             }
         },
         {
             name: 'open_gui_app',
-            description: 'Launch an installed desktop application by name (e.g. Notepad, Calculator, VS Code, PDFCraft).',
+            description: 'Launch an installed desktop application executable by name (e.g. Notepad, Calculator, VS Code, Paint, PDFCraft). Do NOT use for websites or domain names.',
             parameters: {
                 type: 'object',
                 properties: {
-                    appName: { type: 'string', description: 'Name of the desktop application' },
+                    appName: { type: 'string', description: 'Name of the desktop application (e.g. Notepad, Calculator)' },
                     route: { type: 'string', description: 'Optional deep-link route' }
                 },
                 required: ['appName']
@@ -260,14 +260,17 @@ export class NeedleRouter {
             return { handled: false };
         }
 
+        // Apply acoustic / phonetic normalizer to compensate for small ASR decoder variances
+        const normalized = this.normalizeTranscript(trimmed);
+
         // Filter bare wake words so we don't trigger tools on just "Friday"
-        if (/^(friday|hey\s+friday|fryday)$/i.test(trimmed)) {
+        if (/^(friday|hey\s+friday|fryday)$/i.test(normalized)) {
             return { handled: false };
         }
 
         // Clean leading wake words (e.g. "Friday, open downloads" -> "open downloads")
-        const cleanedTranscript = trimmed.replace(/^(hey\s+friday|ok\s+friday|okay\s+friday|friday|fryday)[,\s:]*(please\s+)?/i, '').trim();
-        const query = cleanedTranscript || trimmed;
+        const cleanedTranscript = normalized.replace(/^(hey\s+friday|ok\s+friday|okay\s+friday|friday|fryday)[,\s:]*(please\s+)?/i, '').trim();
+        const query = cleanedTranscript || normalized;
 
         try {
             const completion = await this.needle.complete(query, { tools: this.tools });
@@ -277,12 +280,17 @@ export class NeedleRouter {
 
             const call = completion.function_calls[0];
             const confidence = typeof completion.confidence === 'number' ? completion.confidence : 0;
-            const functionName = call.name;
-            const args = (call.arguments || {}) as Record<string, unknown>;
+            let functionName = call.name;
+            let args = (call.arguments || {}) as Record<string, unknown>;
 
             // Normalize path arguments for Windows system context early
             if (typeof args.path === 'string') {
                 args.path = this.normalizePath(args.path, _envContext);
+            }
+
+            // If Needle selected change_directory for an "open" request, map to open_path
+            if (functionName === 'change_directory' && (query.startsWith('open') || query.includes('folder'))) {
+                functionName = 'open_path';
             }
 
             // Hard Safety Guard: Blocklist check for execute_command
@@ -298,9 +306,9 @@ export class NeedleRouter {
                     return { handled: false };
                 }
             } else if (['open_path', 'list_directory', 'change_directory'].includes(functionName)) {
-                // If the path physically exists on the user's filesystem, we have high empirical certainty
+                // If the path physically exists on the user's filesystem, we have empirical certainty
                 const pathExists = typeof args.path === 'string' && fs.existsSync(args.path);
-                const requiredMinConfidence = pathExists ? 0.20 : this.safeToolConfidenceThreshold;
+                const requiredMinConfidence = pathExists ? 0.08 : this.safeToolConfidenceThreshold;
 
                 if (confidence < requiredMinConfidence) {
                     Logger.debug(LogDomain.TOOLS, `[NeedleRouter] ${functionName} confidence (${confidence.toFixed(2)}) below threshold (${requiredMinConfidence}). Delegating to Gemini.`);
@@ -313,12 +321,20 @@ export class NeedleRouter {
                 }
             }
 
-            // Guard: ensure open_gui_app does not mistake a web URL for a desktop app name
+            // If open_gui_app received a web URL or domain name (e.g. github.com), re-route to open_browser
             if (functionName === 'open_gui_app') {
-                const appName = String(args.appName || '').toLowerCase();
-                if (appName.startsWith('http://') || appName.startsWith('https://') || appName.includes('www.') || appName.endsWith('.com')) {
-                    Logger.debug(LogDomain.TOOLS, `[NeedleRouter] open_gui_app received a URL (${appName}), delegating to browser/Gemini.`);
-                    return { handled: false };
+                const appName = String(args.appName || '').trim();
+                const appLower = appName.toLowerCase();
+                if (
+                    appLower.startsWith('http://') ||
+                    appLower.startsWith('https://') ||
+                    appLower.includes('www.') ||
+                    /\.(com|org|net|io|dev|app|ai|in|edu|gov)\b/i.test(appLower)
+                ) {
+                    const url = appLower.startsWith('http://') || appLower.startsWith('https://') ? appName : `https://${appName}`;
+                    functionName = 'open_browser';
+                    args = { url };
+                    Logger.info(LogDomain.TOOLS, `[NeedleRouter] Re-routed domain/URL from open_gui_app to open_browser: ${url}`);
                 }
             }
 
@@ -412,6 +428,30 @@ export class NeedleRouter {
 
         // Relative path from CWD
         return path.resolve(envContext.cwd, raw);
+    }
+
+    private normalizeTranscript(raw: string): string {
+        let text = raw.trim();
+
+        // 1. Phonetic fixes for common speech-to-text slips on Windows folders
+        // e.g. "down those bullets" / "download spoilers" / "down those" -> "downloads folder"
+        text = text.replace(/\b(down\s*those\s*(bullets|spoilers|folders?|files?)?|download\s*spoilers?)\b/gi, 'downloads folder');
+
+        // "open down those..." -> "open downloads folder"
+        text = text.replace(/\bopen\s+down\s+those\b/gi, 'open downloads folder');
+
+        // "can download..." -> "open downloads folder"
+        text = text.replace(/^(can|could\s+you|please)?\s*download(s)?\s*(folder|directory)?\.?$/gi, 'open downloads folder');
+
+        // If query is just "downloads folder" or "download folder", prefix with "open " so Needle recognizes imperative intent
+        if (/^(downloads?|desktop|documents?|pictures?|videos?)\s*(folder|directory)?\.?$/i.test(text)) {
+            text = 'open ' + text;
+        }
+
+        // 2. Clean leading wake word prefixes like "Friday,", "Hey Friday,", "Buddy"
+        text = text.replace(/^(hey\s+friday|ok\s+friday|okay\s+friday|friday|fryday|buddy)[,\s:]*(please\s+|can\s+you\s+)?/i, '').trim();
+
+        return text;
     }
 
     async close(): Promise<void> {

@@ -50,9 +50,11 @@ export class GeminiClient {
     private transcriptDebounceTimer: NodeJS.Timeout | null = null;
     private pendingUserTranscript = '';
     private reconnectTimer: NodeJS.Timeout | null = null;
+    private reconnectDelay = 5000;
 
     // Offline speech-to-intent pipeline (Whistle + Needle 3)
     private offlineAudioChunks: Buffer[] = [];
+    private preSpeechRingBuffer: Buffer[] = [];
     private offlineSilenceTimer: NodeJS.Timeout | null = null;
     private isUserSpeakingOffline = false;
 
@@ -129,16 +131,18 @@ export class GeminiClient {
                               err?.message?.includes('network') ||
                               err?.message?.includes('fetch failed');
 
+            const delaySec = Math.round(this.reconnectDelay / 1000);
             if (isOffline) {
                 Logger.warn(
                     LogDomain.GEMINI,
-                    'Offline / No internet detected. Operating in autonomous offline mode (Whistle STT + Needle 3). Retrying cloud connection in 10s...'
+                    `Offline / No internet detected. Operating in autonomous offline mode (Whistle STT + Needle 3). Retrying cloud connection in ${delaySec}s...`
                 );
             } else {
                 Logger.error(LogDomain.GEMINI, 'Failed to acquire OAuth token. Run: gcloud auth application-default login', err);
             }
 
-            this.reconnectTimer = setTimeout(() => void this.connect(), 10000);
+            this.reconnectTimer = setTimeout(() => void this.connect(), this.reconnectDelay);
+            this.reconnectDelay = Math.min(this.reconnectDelay * 1.5, 30000);
             return;
         }
 
@@ -157,6 +161,7 @@ export class GeminiClient {
             Logger.info(LogDomain.GEMINI, 'Connected to Vertex AI.');
             this.isConnected = true;
             this.isAwake = true;
+            this.reconnectDelay = 5000;
             this.notifyRenderer({ state: 'idle', cwd: this.envContext.cwd });
             this.sendSetup();
             this.handleFirstBoot();
@@ -172,12 +177,13 @@ export class GeminiClient {
         });
 
         this.ws.on('close', (code, reason) => {
-            Logger.warn(LogDomain.GEMINI, `Disconnected. Code: ${code}, Reason: ${reason ? reason.toString() : 'None'}. Reconnecting in 3s...`);
+            const delaySec = Math.round(this.reconnectDelay / 1000);
+            Logger.warn(LogDomain.GEMINI, `Disconnected. Code: ${code}, Reason: ${reason ? reason.toString() : 'None'}. Auto-reconnecting in ${delaySec}s...`);
             this.isConnected = false;
             this.notifyRenderer({ state: 'idle' });
             this.ws = null;
-            // Re-fetch token on every reconnect (tokens expire after ~60 min)
-            this.reconnectTimer = setTimeout(() => void this.connect(), 3000);
+            this.reconnectTimer = setTimeout(() => void this.connect(), this.reconnectDelay);
+            this.reconnectDelay = Math.min(this.reconnectDelay * 1.5, 30000);
         });
 
         this.ws.on('error', (err: any) => {
@@ -206,6 +212,7 @@ export class GeminiClient {
             this.offlineSilenceTimer = null;
         }
         this.offlineAudioChunks = [];
+        this.preSpeechRingBuffer = [];
         this.isUserSpeakingOffline = false;
         this.ignoreNextModelTurn = false;
         this.pendingUserTranscript = '';
@@ -859,13 +866,19 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
     // ─── Native Offline Audio Processing (Whistle + Needle 3) ─────────────────
     private handleOfflineAudio(chunk: Buffer) {
         const rms = this.calculateRms(chunk);
-        const SPEECH_RMS_THRESHOLD = 400; // Energy threshold for 16-bit PCM
+        const SPEECH_RMS_THRESHOLD = 300; // Energy threshold for 16-bit PCM
 
         if (rms > SPEECH_RMS_THRESHOLD) {
             if (!this.isUserSpeakingOffline) {
                 this.isUserSpeakingOffline = true;
                 Logger.info(LogDomain.AUDIO, '[Offline] User speech detected, buffering audio...');
                 this.notifyRenderer({ state: 'listening', cwd: this.envContext.cwd });
+
+                // Prepend rolling pre-speech ring buffer so onset consonants/syllables are not clipped
+                if (this.preSpeechRingBuffer.length > 0) {
+                    this.offlineAudioChunks.push(...this.preSpeechRingBuffer);
+                    this.preSpeechRingBuffer = [];
+                }
             }
 
             if (this.offlineSilenceTimer) {
@@ -878,13 +891,19 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
             // Buffer trailing silence for utterance natural end
             this.offlineAudioChunks.push(chunk);
 
-            // Wait 800ms of consecutive silence before running Whistle STT
+            // Wait 600ms of consecutive silence before running Whistle STT
             if (!this.offlineSilenceTimer) {
                 this.offlineSilenceTimer = setTimeout(async () => {
                     this.offlineSilenceTimer = null;
                     this.isUserSpeakingOffline = false;
                     await this.flushOfflineAudio();
-                }, 800);
+                }, 600);
+            }
+        } else {
+            // Maintain rolling ~300ms pre-speech buffer (approx 5-6 chunks @ ~50ms each)
+            this.preSpeechRingBuffer.push(chunk);
+            if (this.preSpeechRingBuffer.length > 6) {
+                this.preSpeechRingBuffer.shift();
             }
         }
     }
