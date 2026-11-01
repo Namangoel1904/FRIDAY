@@ -45,33 +45,33 @@ export class NeedleRouter {
         },
         {
             name: 'list_directory',
-            description: 'List files and folders in a directory.',
+            description: 'List files and folders in a directory. Accepts folder names like downloads, desktop, documents, current, or directory paths.',
             parameters: {
                 type: 'object',
                 properties: {
-                    path: { type: 'string', description: 'Directory path to list files for' }
+                    path: { type: 'string', description: 'Folder name or directory path to list files for' }
                 },
                 required: ['path']
             }
         },
         {
             name: 'change_directory',
-            description: 'Change the current working directory.',
+            description: 'Change the current working directory. Accepts folder names like downloads, desktop, documents, or directory paths.',
             parameters: {
                 type: 'object',
                 properties: {
-                    path: { type: 'string', description: 'Target directory path' }
+                    path: { type: 'string', description: 'Target folder name or directory path' }
                 },
                 required: ['path']
             }
         },
         {
             name: 'open_path',
-            description: 'Open a local file or directory with the default system application.',
+            description: 'Open a local folder or file with the default system application. Accepts folder names like downloads, desktop, documents, or file paths.',
             parameters: {
                 type: 'object',
                 properties: {
-                    path: { type: 'string', description: 'Path to open' }
+                    path: { type: 'string', description: 'Folder name (e.g. downloads, desktop) or file path to open' }
                 },
                 required: ['path']
             }
@@ -172,6 +172,11 @@ export class NeedleRouter {
             const functionName = call.name;
             const args = (call.arguments || {}) as Record<string, unknown>;
 
+            // Normalize path arguments for Windows system context early
+            if (typeof args.path === 'string') {
+                args.path = this.normalizePath(args.path, _envContext);
+            }
+
             // Hard Safety Guard: Blocklist check for execute_command
             if (functionName === 'execute_command') {
                 const cmd = String(args.command || '');
@@ -182,6 +187,15 @@ export class NeedleRouter {
 
                 if (confidence < this.executeConfidenceThreshold) {
                     Logger.debug(LogDomain.TOOLS, `[NeedleRouter] execute_command confidence (${confidence.toFixed(2)}) below threshold (${this.executeConfidenceThreshold}). Delegating to Gemini.`);
+                    return { handled: false };
+                }
+            } else if (['open_path', 'list_directory', 'change_directory'].includes(functionName)) {
+                // If the path physically exists on the user's filesystem, we have high empirical certainty
+                const pathExists = typeof args.path === 'string' && fs.existsSync(args.path);
+                const requiredMinConfidence = pathExists ? 0.20 : this.safeToolConfidenceThreshold;
+
+                if (confidence < requiredMinConfidence) {
+                    Logger.debug(LogDomain.TOOLS, `[NeedleRouter] ${functionName} confidence (${confidence.toFixed(2)}) below threshold (${requiredMinConfidence}). Delegating to Gemini.`);
                     return { handled: false };
                 }
             } else {
@@ -249,6 +263,47 @@ export class NeedleRouter {
             case 'execute_command': return 'EXECUTE_COMMAND';
             default: return null;
         }
+    }
+
+    private normalizePath(inputPath: string, envContext: EnvironmentContext): string {
+        const raw = inputPath.trim();
+        const lower = raw.toLowerCase().replace(/['"]/g, '');
+
+        // If it's already an existing file or absolute path like C:\... or \\..., return as is
+        if (path.isAbsolute(raw) || fs.existsSync(raw)) {
+            return raw;
+        }
+
+        const home = envContext.homeDir || process.env.USERPROFILE || process.env.HOME || '';
+
+        // Match common Windows user folder aliases
+        if (lower === 'downloads' || lower === 'downloads folder' || lower === 'download') {
+            return path.join(home, 'Downloads');
+        }
+        if (lower === 'desktop' || lower === 'desktop folder') {
+            return path.join(home, 'Desktop');
+        }
+        if (lower === 'documents' || lower === 'documents folder' || lower === 'my documents') {
+            return path.join(home, 'Documents');
+        }
+        if (lower === 'pictures' || lower === 'pictures folder') {
+            return path.join(home, 'Pictures');
+        }
+        if (lower === 'videos' || lower === 'videos folder') {
+            return path.join(home, 'Videos');
+        }
+        if (lower === 'music' || lower === 'music folder') {
+            return path.join(home, 'Music');
+        }
+        if (lower === 'home' || lower === 'home folder' || lower === 'user profile') {
+            return home;
+        }
+        if (lower === 'current' || lower === 'current directory' || lower === 'here' || lower === '.') {
+            return envContext.cwd;
+        }
+
+        // Relative path from CWD
+        return path.resolve(envContext.cwd, raw);
     }
 
     async close(): Promise<void> {
