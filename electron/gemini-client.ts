@@ -20,6 +20,7 @@ import { createExecuteCommandTool } from './tools/implementations/execute-comman
 import { createControlBrowserTool } from './tools/implementations/control-browser.js';
 import { createOpenGuiAppTool } from './tools/implementations/open-gui-app.js';
 import { Logger, LogDomain } from './logger.js';
+import { NeedleRouter } from './needle-router.js';
 
 interface GeminiFunctionCall {
     id?: string;
@@ -44,6 +45,10 @@ export class GeminiClient {
     private envContext: EnvironmentContext;
     private screenManager: ScreenManager;
     private memoryManager: MemoryManager;
+    private needleRouter: NeedleRouter;
+    private ignoreNextModelTurn = false;
+    private transcriptDebounceTimer: NodeJS.Timeout | null = null;
+    private pendingUserTranscript = '';
     private reconnectTimer: NodeJS.Timeout | null = null;
 
     // Google Auth client – scoped to Vertex AI
@@ -57,6 +62,7 @@ export class GeminiClient {
         this.envContext = new EnvironmentContext();
         this.screenManager = new ScreenManager();
         this.memoryManager = new MemoryManager();
+        this.needleRouter = new NeedleRouter();
         this.initializeTools();
 
         // Initialize Google Auth using Application Default Credentials (ADC).
@@ -131,6 +137,11 @@ export class GeminiClient {
             this.notifyRenderer({ state: 'idle', cwd: this.envContext.cwd });
             this.sendSetup();
             this.handleFirstBoot();
+
+            // Initialize Needle 3 in background (non-blocking)
+            if (!this.needleRouter.ready) {
+                void this.needleRouter.initialize();
+            }
         });
 
         this.ws.on('message', (data: Buffer) => {
@@ -156,6 +167,13 @@ export class GeminiClient {
             clearTimeout(this.reconnectTimer);
             this.reconnectTimer = null;
         }
+        if (this.transcriptDebounceTimer) {
+            clearTimeout(this.transcriptDebounceTimer);
+            this.transcriptDebounceTimer = null;
+        }
+        this.ignoreNextModelTurn = false;
+        this.pendingUserTranscript = '';
+        void this.needleRouter.close();
         this.ws?.close();
         this.ws = null;
         this.isConnected = false;
@@ -631,6 +649,17 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
                 Logger.info(LogDomain.GEMINI, 'Setup complete.');
             }
 
+            // Fast-path turn suppression: drop Gemini's duplicate toolCall / audio during this turn
+            if (this.ignoreNextModelTurn) {
+                const serverContent = response.server_content || response.serverContent;
+                if (serverContent?.turn_complete || serverContent?.turnComplete) {
+                    Logger.debug(LogDomain.GEMINI, '[Needle] Turn complete received, resetting turn suppression.');
+                    this.ignoreNextModelTurn = false;
+                    this.notifyRenderer({ state: this.isAwake ? 'listening' : 'idle', cwd: this.envContext.cwd });
+                }
+                return;
+            }
+
             if (response.tool_call?.function_calls?.length) {
                 await this.handleToolCalls(response.tool_call.function_calls);
             } else if (response.toolCall?.functionCalls?.length) {
@@ -722,6 +751,61 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
             Logger.info(LogDomain.SYSTEM, 'Stop/Cancel command detected');
             this.permissionManager.cancelPending();
         }
+
+        // ─── Needle 3 Fast-Path Routing ──────────────────────────────────────────
+        if (source === 'user' && this.isAwake && this.needleRouter.ready) {
+            this.handleUserUtteranceForNeedle(text);
+        }
+    }
+
+    private handleUserUtteranceForNeedle(text: string) {
+        if (!this.pendingUserTranscript) {
+            this.pendingUserTranscript = text;
+        } else {
+            if (text.startsWith(this.pendingUserTranscript)) {
+                this.pendingUserTranscript = text;
+            } else {
+                this.pendingUserTranscript += ' ' + text;
+            }
+        }
+
+        if (this.transcriptDebounceTimer) {
+            clearTimeout(this.transcriptDebounceTimer);
+        }
+
+        this.transcriptDebounceTimer = setTimeout(async () => {
+            const utterance = this.pendingUserTranscript.trim();
+            this.pendingUserTranscript = '';
+            this.transcriptDebounceTimer = null;
+
+            if (!utterance) return;
+
+            try {
+                const dispatchResult = await this.needleRouter.tryDispatch(
+                    utterance,
+                    this.toolRegistry,
+                    this.envContext
+                );
+
+                if (dispatchResult.handled) {
+                    Logger.info(
+                        LogDomain.TOOLS,
+                        `[Needle] Handled '${dispatchResult.toolName}' locally (${dispatchResult.confidence?.toFixed(2)}), suppressing Gemini turn.`
+                    );
+
+                    // 1. Suppress Gemini's duplicate toolCall / audio for this turn
+                    this.ignoreNextModelTurn = true;
+
+                    // 2. Notify UI
+                    this.notifyRenderer({ state: 'listening', tool: dispatchResult.toolName, cwd: this.envContext.cwd });
+
+                    // 3. Keep Gemini's conversation context synced with reality
+                    this.sendText(`[SYSTEM]: Executed ${dispatchResult.toolName} locally via fast-path. Stay silent.`);
+                }
+            } catch (err) {
+                Logger.warn(LogDomain.TOOLS, '[Needle] Unexpected error in fast-path handler', err);
+            }
+        }, 300);
     }
 
     // ─── Tool Call Dispatch ───────────────────────────────────────────────────

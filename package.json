@@ -16,6 +16,7 @@
     "@types/express": "^5.0.6",
     "@types/websocket": "^1.0.10",
     "@types/ws": "^8.18.1",
+    "cactus-needle": "^0.3.0",
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
