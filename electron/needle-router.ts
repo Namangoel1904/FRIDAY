@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import electron from 'electron';
-import { Needle } from 'cactus-needle';
+import { Needle, Whistle } from 'cactus-needle';
 import { ToolRegistry } from './tools/tool-registry.js';
 import { EnvironmentContext } from './tools/environment-context.js';
 import { Logger, LogDomain } from './logger.js';
@@ -23,7 +23,9 @@ const DANGEROUS_CMD = /\b(rm|del|rmdir|format|remove-item|shutdown|taskkill|reg|
 
 export class NeedleRouter {
     private needle: any = null;
+    private whistle: any = null;
     private isReady = false;
+    private isWhistleReady = false;
 
     // Thresholds
     private readonly safeToolConfidenceThreshold = 0.50;
@@ -135,6 +137,32 @@ export class NeedleRouter {
 
             this.isReady = true;
             Logger.info(LogDomain.SYSTEM, '[NeedleRouter] Needle 3 engine ready for fast-path routing.');
+
+            // Initialize Whistle for native offline Speech-to-Text
+            try {
+                let whistleWeightsPath: string | undefined;
+                try {
+                    const basePath = app && typeof app.getAppPath === 'function' ? app.getAppPath() : process.cwd();
+                    const bundledWhistle = path.join(basePath, 'electron', 'models', 'whistle.cact');
+                    if (fs.existsSync(bundledWhistle)) {
+                        whistleWeightsPath = bundledWhistle;
+                        Logger.info(LogDomain.SYSTEM, `[NeedleRouter] Using bundled Whistle weights: ${whistleWeightsPath}`);
+                    }
+                } catch {
+                    // Ignore app path error in test/dev
+                }
+
+                this.whistle = whistleWeightsPath
+                    ? new Whistle({ weights: whistleWeightsPath, download: false })
+                    : new Whistle({ download: true });
+
+                this.isWhistleReady = true;
+                Logger.info(LogDomain.SYSTEM, '[NeedleRouter] Whistle on-device STT engine ready for offline fallback.');
+            } catch (wErr) {
+                Logger.warn(LogDomain.SYSTEM, '[NeedleRouter] Whistle STT failed to load (offline voice disabled).', wErr);
+                this.isWhistleReady = false;
+            }
+
             return true;
         } catch (error) {
             Logger.warn(LogDomain.SYSTEM, '[NeedleRouter] Failed to initialize Needle 3. Operating in Gemini-only mode.', error);
@@ -145,6 +173,35 @@ export class NeedleRouter {
 
     get ready(): boolean {
         return this.isReady;
+    }
+
+    get hasOfflineStt(): boolean {
+        return this.isWhistleReady && this.whistle !== null;
+    }
+
+    async transcribe(samples: Float32Array, sampleRate = 16000): Promise<string> {
+        if (!this.isWhistleReady || !this.whistle) return '';
+        try {
+            const res = await this.whistle.transcribe({ samples, sampleRate });
+            return res && typeof res.text === 'string' ? res.text.trim() : '';
+        } catch (err) {
+            Logger.warn(LogDomain.AUDIO, '[NeedleRouter] Whistle STT error during offline transcription', err);
+            return '';
+        }
+    }
+
+    async transcribeAndDispatch(
+        samples: Float32Array,
+        sampleRate: number,
+        toolRegistry: ToolRegistry,
+        envContext: EnvironmentContext
+    ): Promise<NeedleDispatchResult> {
+        const text = await this.transcribe(samples, sampleRate);
+        if (!text) {
+            return { handled: false };
+        }
+        Logger.info(LogDomain.AUDIO, `[Offline/Whistle] Local voice transcript: "${text}"`);
+        return this.tryDispatch(text, toolRegistry, envContext);
     }
 
     async tryDispatch(
@@ -315,6 +372,16 @@ export class NeedleRouter {
             }
             this.needle = null;
             this.isReady = false;
+        }
+
+        if (this.whistle && typeof this.whistle.close === 'function') {
+            try {
+                await this.whistle.close();
+            } catch {
+                // Ignore close errors
+            }
+            this.whistle = null;
+            this.isWhistleReady = false;
         }
     }
 }

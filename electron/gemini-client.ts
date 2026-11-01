@@ -51,6 +51,11 @@ export class GeminiClient {
     private pendingUserTranscript = '';
     private reconnectTimer: NodeJS.Timeout | null = null;
 
+    // Offline speech-to-intent pipeline (Whistle + Needle 3)
+    private offlineAudioChunks: Buffer[] = [];
+    private offlineSilenceTimer: NodeJS.Timeout | null = null;
+    private isUserSpeakingOffline = false;
+
     // Google Auth client – scoped to Vertex AI
     private auth: GoogleAuth;
 
@@ -171,6 +176,12 @@ export class GeminiClient {
             clearTimeout(this.transcriptDebounceTimer);
             this.transcriptDebounceTimer = null;
         }
+        if (this.offlineSilenceTimer) {
+            clearTimeout(this.offlineSilenceTimer);
+            this.offlineSilenceTimer = null;
+        }
+        this.offlineAudioChunks = [];
+        this.isUserSpeakingOffline = false;
         this.ignoreNextModelTurn = false;
         this.pendingUserTranscript = '';
         void this.needleRouter.close();
@@ -612,16 +623,23 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
     }
 
     sendAudio(chunk: Buffer) {
-        if (!this.isConnected || !this.ws) return;
-
-        this.ws.send(JSON.stringify({
-            realtime_input: {
-                audio: {
-                    mime_type: 'audio/pcm;rate=16000',
-                    data: chunk.toString('base64')
+        if (this.isConnected && this.ws) {
+            this.ws.send(JSON.stringify({
+                realtime_input: {
+                    audio: {
+                        mime_type: 'audio/pcm;rate=16000',
+                        data: chunk.toString('base64')
+                    }
                 }
-            }
-        }));
+            }));
+            return;
+        }
+
+        // ─── Offline Fallback Mode (Whistle + Needle 3) ──────────────────────
+        // Active when disconnected from Gemini/Internet
+        if (this.needleRouter.hasOfflineStt) {
+            this.handleOfflineAudio(chunk);
+        }
     }
 
     private sendImage(chunk: Buffer) {
@@ -809,6 +827,95 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
                 Logger.warn(LogDomain.TOOLS, '[Needle] Unexpected error in fast-path handler', err);
             }
         }, 300);
+    }
+
+    // ─── Native Offline Audio Processing (Whistle + Needle 3) ─────────────────
+    private handleOfflineAudio(chunk: Buffer) {
+        const rms = this.calculateRms(chunk);
+        const SPEECH_RMS_THRESHOLD = 400; // Energy threshold for 16-bit PCM
+
+        if (rms > SPEECH_RMS_THRESHOLD) {
+            if (!this.isUserSpeakingOffline) {
+                this.isUserSpeakingOffline = true;
+                Logger.info(LogDomain.AUDIO, '[Offline] User speech detected, buffering audio...');
+                this.notifyRenderer({ state: 'listening', cwd: this.envContext.cwd });
+            }
+
+            if (this.offlineSilenceTimer) {
+                clearTimeout(this.offlineSilenceTimer);
+                this.offlineSilenceTimer = null;
+            }
+
+            this.offlineAudioChunks.push(chunk);
+        } else if (this.isUserSpeakingOffline) {
+            // Buffer trailing silence for utterance natural end
+            this.offlineAudioChunks.push(chunk);
+
+            // Wait 800ms of consecutive silence before running Whistle STT
+            if (!this.offlineSilenceTimer) {
+                this.offlineSilenceTimer = setTimeout(async () => {
+                    this.offlineSilenceTimer = null;
+                    this.isUserSpeakingOffline = false;
+                    await this.flushOfflineAudio();
+                }, 800);
+            }
+        }
+    }
+
+    private async flushOfflineAudio() {
+        if (this.offlineAudioChunks.length === 0) return;
+
+        const chunks = this.offlineAudioChunks;
+        this.offlineAudioChunks = [];
+
+        const totalLength = chunks.reduce((acc, c) => acc + c.length, 0);
+        // Skip audio bursts shorter than 0.4s (16000 samples/sec * 2 bytes = 32000 bytes/sec -> 12800 bytes)
+        if (totalLength < 12800) {
+            return;
+        }
+
+        const mergedBuffer = Buffer.concat(chunks, totalLength);
+        const sampleCount = mergedBuffer.length / 2;
+        const float32Samples = new Float32Array(sampleCount);
+
+        for (let i = 0; i < sampleCount; i++) {
+            float32Samples[i] = mergedBuffer.readInt16LE(i * 2) / 32768.0;
+        }
+
+        Logger.info(LogDomain.AUDIO, `[Offline] Transcribing ${(sampleCount / 16000).toFixed(1)}s of audio via Whistle...`);
+        this.notifyRenderer({ state: 'processing', cwd: this.envContext.cwd });
+
+        try {
+            const result = await this.needleRouter.transcribeAndDispatch(
+                float32Samples,
+                16000,
+                this.toolRegistry,
+                this.envContext
+            );
+
+            if (result.handled) {
+                Logger.info(LogDomain.TOOLS, `[Offline/Needle] Successfully executed '${result.toolName}' offline!`);
+                this.notifyRenderer({ state: 'idle', tool: result.toolName, cwd: this.envContext.cwd });
+            } else {
+                Logger.info(LogDomain.TOOLS, '[Offline/Needle] Utterance did not match offline tools.');
+                this.notifyRenderer({ state: 'idle', cwd: this.envContext.cwd });
+            }
+        } catch (err) {
+            Logger.warn(LogDomain.SYSTEM, '[Offline] Failed during offline audio processing', err);
+            this.notifyRenderer({ state: 'idle', cwd: this.envContext.cwd });
+        }
+    }
+
+    private calculateRms(buffer: Buffer): number {
+        let sum = 0;
+        const sampleCount = buffer.length / 2;
+        if (sampleCount === 0) return 0;
+
+        for (let i = 0; i < buffer.length; i += 2) {
+            const sample = buffer.readInt16LE(i);
+            sum += sample * sample;
+        }
+        return Math.sqrt(sum / sampleCount);
     }
 
     // ─── Tool Call Dispatch ───────────────────────────────────────────────────
