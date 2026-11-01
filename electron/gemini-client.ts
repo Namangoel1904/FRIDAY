@@ -70,6 +70,9 @@ export class GeminiClient {
         this.needleRouter = new NeedleRouter();
         this.initializeTools();
 
+        // Boot Needle 3 and Whistle STT immediately on startup (zero internet dependency)
+        void this.needleRouter.initialize();
+
         // Initialize Google Auth using Application Default Credentials (ADC).
         // ADC picks up credentials from: gcloud auth application-default login
         this.auth = new GoogleAuth({
@@ -96,6 +99,7 @@ export class GeminiClient {
 
     setRendererSender(sender: Electron.WebContents) {
         this.rendererSender = sender;
+        this.notifyRenderer({ state: 'idle', cwd: this.envContext.cwd });
     }
 
     // ─── Connection (async for OAuth token fetch) ─────────────────────────────
@@ -118,8 +122,22 @@ export class GeminiClient {
             accessToken = tokenResponse.token || '';
             if (!accessToken) throw new Error('Token was empty');
             Logger.info(LogDomain.GEMINI, `OAuth token acquired (${accessToken.substring(0, 12)}...)`);
-        } catch (err) {
-            Logger.error(LogDomain.GEMINI, 'Failed to acquire OAuth token. Run: gcloud auth application-default login', err);
+        } catch (err: any) {
+            const isOffline = err?.code === 'ENOTFOUND' ||
+                              err?.message?.includes('ENOTFOUND') ||
+                              err?.message?.includes('getaddrinfo') ||
+                              err?.message?.includes('network') ||
+                              err?.message?.includes('fetch failed');
+
+            if (isOffline) {
+                Logger.warn(
+                    LogDomain.GEMINI,
+                    'Offline / No internet detected. Operating in autonomous offline mode (Whistle STT + Needle 3). Retrying cloud connection in 10s...'
+                );
+            } else {
+                Logger.error(LogDomain.GEMINI, 'Failed to acquire OAuth token. Run: gcloud auth application-default login', err);
+            }
+
             this.reconnectTimer = setTimeout(() => void this.connect(), 10000);
             return;
         }
@@ -162,8 +180,15 @@ export class GeminiClient {
             this.reconnectTimer = setTimeout(() => void this.connect(), 3000);
         });
 
-        this.ws.on('error', (err) => {
-            Logger.error(LogDomain.GEMINI, 'WebSocket Error', err);
+        this.ws.on('error', (err: any) => {
+            const isOffline = err?.code === 'ENOTFOUND' ||
+                              err?.message?.includes('ENOTFOUND') ||
+                              err?.message?.includes('getaddrinfo');
+            if (isOffline) {
+                Logger.warn(LogDomain.GEMINI, 'WebSocket connection offline.');
+            } else {
+                Logger.error(LogDomain.GEMINI, 'WebSocket Error', err);
+            }
         });
     }
 
@@ -639,6 +664,8 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
         // Active when disconnected from Gemini/Internet
         if (this.needleRouter.hasOfflineStt) {
             this.handleOfflineAudio(chunk);
+        } else if (!this.needleRouter.ready) {
+            void this.needleRouter.initialize();
         }
     }
 
@@ -886,9 +913,49 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
         this.notifyRenderer({ state: 'processing', cwd: this.envContext.cwd });
 
         try {
-            const result = await this.needleRouter.transcribeAndDispatch(
-                float32Samples,
-                16000,
+            const transcript = await this.needleRouter.transcribe(float32Samples, 16000);
+            if (!transcript) {
+                this.notifyRenderer({ state: this.isAwake ? 'listening' : 'idle', cwd: this.envContext.cwd });
+                return;
+            }
+
+            Logger.info(LogDomain.AUDIO, `[Offline/Whistle] Local voice transcript: "${transcript}"`);
+
+            // Offline wake word check
+            const wakeWordPatterns = /\b(friday|fry[\s-]?day|fri[\s-]?day|hey\s+friday)\b/i;
+            if (wakeWordPatterns.test(transcript)) {
+                Logger.info(LogDomain.WAKE, '[Offline] Wake word found.');
+                this.isAwake = true;
+            }
+
+            // Offline sleep command check
+            const sleepPatterns = /\b(go to sleep|sleep friday|friday sleep|goodnight friday)\b/i;
+            if (sleepPatterns.test(transcript)) {
+                Logger.info(LogDomain.WAKE, '[Offline] Sleep command detected.');
+                this.isAwake = false;
+                this.audioManager.stopPlayback();
+                this.notifyRenderer({ state: 'idle', cwd: this.envContext.cwd });
+                return;
+            }
+
+            // Offline stop/cancel check
+            const stopPatterns = /\b(friday stop|stop friday|cancel that|never\s*mind)\b/i;
+            if (stopPatterns.test(transcript)) {
+                Logger.info(LogDomain.SYSTEM, '[Offline] Stop/Cancel command detected');
+                this.permissionManager.cancelPending();
+                this.notifyRenderer({ state: 'idle', cwd: this.envContext.cwd });
+                return;
+            }
+
+            // If asleep, ignore non-wake utterances
+            if (!this.isAwake) {
+                this.notifyRenderer({ state: 'idle', cwd: this.envContext.cwd });
+                return;
+            }
+
+            // Dispatch to Needle 3
+            const result = await this.needleRouter.tryDispatch(
+                transcript,
                 this.toolRegistry,
                 this.envContext
             );
@@ -897,8 +964,8 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
                 Logger.info(LogDomain.TOOLS, `[Offline/Needle] Successfully executed '${result.toolName}' offline!`);
                 this.notifyRenderer({ state: 'idle', tool: result.toolName, cwd: this.envContext.cwd });
             } else {
-                Logger.info(LogDomain.TOOLS, '[Offline/Needle] Utterance did not match offline tools.');
-                this.notifyRenderer({ state: 'idle', cwd: this.envContext.cwd });
+                Logger.info(LogDomain.TOOLS, `[Offline/Needle] Utterance "${transcript}" did not match offline tools.`);
+                this.notifyRenderer({ state: 'listening', cwd: this.envContext.cwd });
             }
         } catch (err) {
             Logger.warn(LogDomain.SYSTEM, '[Offline] Failed during offline audio processing', err);

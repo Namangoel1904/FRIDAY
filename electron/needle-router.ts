@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import electron from 'electron';
-import { Needle, Whistle } from 'cactus-needle';
+import { Needle, Whistle, getModelPath } from 'cactus-needle';
 import { ToolRegistry } from './tools/tool-registry.js';
 import { EnvironmentContext } from './tools/environment-context.js';
 import { Logger, LogDomain } from './logger.js';
@@ -114,48 +114,88 @@ export class NeedleRouter {
         }
     ];
 
+    private isInitializing = false;
+
     async initialize(): Promise<boolean> {
+        if (this.isReady && this.isWhistleReady) return true;
+        if (this.isInitializing) return false;
+        this.isInitializing = true;
+
         try {
             Logger.info(LogDomain.SYSTEM, '[NeedleRouter] Initializing Needle 3 on-device engine...');
 
-            let weightsPath: string | undefined;
-            try {
-                const basePath = app && typeof app.getAppPath === 'function' ? app.getAppPath() : process.cwd();
-                const bundledPath = path.join(basePath, 'electron', 'models', 'needle3.cact');
-                if (fs.existsSync(bundledPath)) {
-                    weightsPath = bundledPath;
-                    Logger.info(LogDomain.SYSTEM, `[NeedleRouter] Using bundled weights: ${weightsPath}`);
-                }
-            } catch {
-                // Ignore app path error in test/dev
+            const basePath = app && typeof app.getAppPath === 'function' ? app.getAppPath() : process.cwd();
+            const modelsDir = path.join(basePath, 'electron', 'models');
+            if (!fs.existsSync(modelsDir)) {
+                try { fs.mkdirSync(modelsDir, { recursive: true }); } catch {}
             }
 
-            // If bundled weights exist, load them directly. Otherwise, download/use verified local AppData cache
-            this.needle = weightsPath
-                ? new Needle({ weights: weightsPath, download: false })
+            const bundledNeedle = path.join(modelsDir, 'needle3.cact');
+            let needleWeights: string | undefined;
+
+            if (fs.existsSync(bundledNeedle)) {
+                needleWeights = bundledNeedle;
+                Logger.info(LogDomain.SYSTEM, `[NeedleRouter] Using bundled weights: ${needleWeights}`);
+            } else {
+                try {
+                    const cachedNeedle = getModelPath(undefined, 'needle3');
+                    if (fs.existsSync(cachedNeedle)) {
+                        needleWeights = cachedNeedle;
+                        Logger.info(LogDomain.SYSTEM, `[NeedleRouter] Using cached weights: ${needleWeights}`);
+                        try {
+                            fs.copyFileSync(cachedNeedle, bundledNeedle);
+                            needleWeights = bundledNeedle;
+                            Logger.info(LogDomain.SYSTEM, `[NeedleRouter] Mirrored Needle 3 weights to ${bundledNeedle}`);
+                        } catch {}
+                    }
+                } catch {
+                    // Ignore cache lookup error
+                }
+            }
+
+            this.needle = needleWeights
+                ? new Needle({ weights: needleWeights, download: false })
                 : new Needle({ download: true });
 
-            this.isReady = true;
-            Logger.info(LogDomain.SYSTEM, '[NeedleRouter] Needle 3 engine ready for fast-path routing.');
+            try {
+                await this.needle.ready();
+                this.isReady = true;
+                Logger.info(LogDomain.SYSTEM, '[NeedleRouter] Needle 3 engine ready for fast-path routing.');
+            } catch (nErr) {
+                Logger.warn(LogDomain.SYSTEM, '[NeedleRouter] Needle 3 ready check failed:', nErr);
+                this.isReady = false;
+            }
 
             // Initialize Whistle for native offline Speech-to-Text
             try {
-                let whistleWeightsPath: string | undefined;
-                try {
-                    const basePath = app && typeof app.getAppPath === 'function' ? app.getAppPath() : process.cwd();
-                    const bundledWhistle = path.join(basePath, 'electron', 'models', 'whistle.cact');
-                    if (fs.existsSync(bundledWhistle)) {
-                        whistleWeightsPath = bundledWhistle;
-                        Logger.info(LogDomain.SYSTEM, `[NeedleRouter] Using bundled Whistle weights: ${whistleWeightsPath}`);
+                const bundledWhistle = path.join(modelsDir, 'whistle.cact');
+                let whistleWeights: string | undefined;
+
+                if (fs.existsSync(bundledWhistle)) {
+                    whistleWeights = bundledWhistle;
+                    Logger.info(LogDomain.SYSTEM, `[NeedleRouter] Using bundled Whistle weights: ${whistleWeights}`);
+                } else {
+                    try {
+                        const cachedWhistle = getModelPath(undefined, 'whistle');
+                        if (fs.existsSync(cachedWhistle)) {
+                            whistleWeights = cachedWhistle;
+                            Logger.info(LogDomain.SYSTEM, `[NeedleRouter] Using cached Whistle weights: ${whistleWeights}`);
+                            try {
+                                fs.copyFileSync(cachedWhistle, bundledWhistle);
+                                whistleWeights = bundledWhistle;
+                                Logger.info(LogDomain.SYSTEM, `[NeedleRouter] Mirrored Whistle weights to ${bundledWhistle}`);
+                            } catch {}
+                        }
+                    } catch {
+                        // Ignore cache lookup error
                     }
-                } catch {
-                    // Ignore app path error in test/dev
                 }
 
-                this.whistle = whistleWeightsPath
-                    ? new Whistle({ weights: whistleWeightsPath, download: false })
+                this.whistle = whistleWeights
+                    ? new Whistle({ weights: whistleWeights, download: false })
                     : new Whistle({ download: true });
 
+                await this.whistle.ready();
                 this.isWhistleReady = true;
                 Logger.info(LogDomain.SYSTEM, '[NeedleRouter] Whistle on-device STT engine ready for offline fallback.');
             } catch (wErr) {
@@ -163,10 +203,12 @@ export class NeedleRouter {
                 this.isWhistleReady = false;
             }
 
-            return true;
+            this.isInitializing = false;
+            return this.isReady;
         } catch (error) {
             Logger.warn(LogDomain.SYSTEM, '[NeedleRouter] Failed to initialize Needle 3. Operating in Gemini-only mode.', error);
             this.isReady = false;
+            this.isInitializing = false;
             return false;
         }
     }
@@ -218,8 +260,17 @@ export class NeedleRouter {
             return { handled: false };
         }
 
+        // Filter bare wake words so we don't trigger tools on just "Friday"
+        if (/^(friday|hey\s+friday|fryday)$/i.test(trimmed)) {
+            return { handled: false };
+        }
+
+        // Clean leading wake words (e.g. "Friday, open downloads" -> "open downloads")
+        const cleanedTranscript = trimmed.replace(/^(hey\s+friday|ok\s+friday|okay\s+friday|friday|fryday)[,\s:]*(please\s+)?/i, '').trim();
+        const query = cleanedTranscript || trimmed;
+
         try {
-            const completion = await this.needle.complete(trimmed, { tools: this.tools });
+            const completion = await this.needle.complete(query, { tools: this.tools });
             if (!completion || !completion.success || !completion.function_calls || completion.function_calls.length === 0) {
                 return { handled: false };
             }
