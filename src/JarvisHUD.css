@@ -1,0 +1,73 @@
+.jarvis-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    pointer-events: none;
+}
+
+.jarvis-hud {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
+}
+
+/* Rotation animations for rings */
+.ring-rotate-slow {
+    animation: rotate 20s linear infinite;
+    transform-origin: 140px 140px;
+}
+
+.ring-rotate-medium {
+    animation: rotate 15s linear infinite reverse;
+    transform-origin: 140px 140px;
+}
+
+.ring-rotate-reverse {
+    animation: rotate 25s linear infinite reverse;
+    transform-origin: 140px 140px;
+}
+
+/* Pulse animation for speaking state */
+.pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Draggable area - center area */
+.jarvis-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    pointer-events: auto;
+    cursor: move;
+    -webkit-app-region: drag;
+}

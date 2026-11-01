@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext", // ESM for everything
+        "moduleResolution": "node",
+        "outDir": "dist-electron",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": [
+            "node"
+        ] // Ensure node types are loaded
+    },
+    "include": [
+        "electron"
+    ]
+}

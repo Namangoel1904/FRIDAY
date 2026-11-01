@@ -1,0 +1,137 @@
+.friday-hud {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.hud-panel {
+    background: rgba(10, 15, 25, 0.95);
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    border-radius: 16px;
+    padding: 20px;
+    min-width: 200px;
+    box-shadow:
+        0 0 20px rgba(0, 217, 255, 0.1),
+        0 4px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    font-family: 'Courier New', monospace;
+}
+
+/* Header */
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(74, 158, 255, 0.2);
+}
+
+.assistant-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #00d9ff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
+}
+
+.mic-indicator {
+    font-size: 12px;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+}
+
+.mic-indicator.active {
+    opacity: 1;
+    animation: pulse-glow 2s infinite;
+}
+
+/* Status */
+.status-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+    transition: background-color 0.3s;
+}
+
+.status-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Waveform */
+.waveform {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3px;
+    height: 50px;
+    padding: 5px 0;
+}
+
+.wave-bar {
+    flex: 1;
+    min-width: 3px;
+    border-radius: 2px;
+    transition: height 0.1s ease;
+    box-shadow: 0 0 4px rgba(0, 217, 255, 0.5);
+}
+
+/* Speaking Indicator */
+.speaking-indicator {
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #ff9500;
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulse-out 2s ease-out infinite;
+}
+
+.pulse-ring.delay {
+    animation-delay: 1s;
+}
+
+/* Animations */
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes pulse-out {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}

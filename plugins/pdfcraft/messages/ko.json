@@ -1,0 +1,2391 @@
+{
+  "metadata": {
+    "home": {
+      "title": "PDFCraft - 전문 PDF 도구",
+      "description": "무료, 비공개, 브라우저 기반. 서버에 업로드하지 않고 온라인으로 PDF 파일을 병합하고 편집하세요."
+    },
+    "tools": {
+      "title": "모든 PDF 도구",
+      "description": "67개 이상의 전문 PDF 도구를 찾아보세요. PDF 파일을 무료로 병합, 분할, 압축, 변환, 편집 및 보호하세요."
+    },
+    "about": {
+      "title": "회사 소개",
+      "description": "PDFCraft 소개 - 무료, 비공개, 강력한 PDF 툴킷. 모든 처리는 브라우저에서 이루어집니다."
+    },
+    "faq": {
+      "title": "자주 묻는 질문",
+      "description": "PDFCraft에 대한 일반적인 질문에 대한 답변을 찾으세요. PDF 도구를 효과적으로 사용하는 방법을 알아보세요."
+    },
+    "privacy": {
+      "title": "개인정보 보호정책",
+      "description": "PDFCraft 개인정보 보호정책. 파일은 장치를 떠나지 않습니다 - 모든 처리는 로컬 브라우저에서 이루어집니다."
+    },
+    "contact": {
+      "title": "문의하기",
+      "description": "PDFCraft 팀에 연락하세요. 여러분의 의견을 듣고 싶습니다."
+    },
+    "keywords": {
+      "pdfTools": "PDF 도구",
+      "mergePdf": "PDF 병합",
+      "splitPdf": "PDF 분할",
+      "compressPdf": "PDF 압축",
+      "convertPdf": "PDF 변환",
+      "freePdfTools": "무료 PDF 도구",
+      "onlinePdfEditor": "온라인 PDF 편집기"
+    }
+  },
+  "common": {
+    "brand": "PDFCraft",
+    "tagline": "전문 PDF 도구 - 무료 & 프라이빗",
+    "navigation": {
+      "home": "홈",
+      "tools": "도구",
+      "about": "소개",
+      "faq": "자주 묻는 질문",
+      "privacy": "개인정보",
+      "contact": "문의",
+      "workflow": "워크플로"
+    },
+    "buttons": {
+      "upload": "파일 업로드",
+      "download": "다운로드",
+      "process": "처리",
+      "cancel": "취소",
+      "reset": "초기화",
+      "selectLanguage": "언어 선택",
+      "close": "닫기",
+      "save": "저장",
+      "delete": "삭제",
+      "edit": "편집",
+      "back": "뒤로",
+      "next": "다음",
+      "submit": "제출",
+      "clear": "Clear",
+      "previous": "Previous",
+      "clearAll": "Clear All",
+      "remove": "Remove",
+      "selectAll": "Select All",
+      "deselectAll": "Deselect All",
+      "apply": "Apply",
+      "insertAtBeginning": "Insert at Beginning",
+      "insertAtEnd": "Insert at End",
+      "rotateAllLeft": "Rotate All Left",
+      "rotateAllRight": "Rotate All Right",
+      "confirm": "확인",
+      "add": "추가"
+    },
+    "status": {
+      "idle": "준비됨",
+      "uploading": "업로드 중...",
+      "processing": "처리 중...",
+      "complete": "완료",
+      "error": "오류",
+      "loading": "로딩 중..."
+    },
+    "footer": {
+      "copyright": "© {year} PDFCraft. All rights reserved.",
+      "privacyBadge": "100% 프라이빗 - 파일이 기기를 떠나지 않습니다",
+      "footer": "© 2025 PDFCraft. All rights reserved.",
+      "madeWith": "Made with <Heart /> and <Nextjs />"
+    },
+    "recentFiles": {
+      "title": "최근 파일",
+      "empty": "최근 파일 없음",
+      "clearAll": "모두 지우기",
+      "processedWith": "처리 도구:"
+    },
+    "savedProjects": {
+      "title": "저장된 프로젝트",
+      "empty": "저장된 프로젝트 없음",
+      "clearAll": "모두 지우기",
+      "resume": "재개",
+      "delete": "삭제",
+      "inProgress": "진행 중",
+      "paused": "일시 중지",
+      "completed": "완료",
+      "progress": "진행률",
+      "files": "파일"
+    },
+    "batchProcessing": {
+      "title": "일괄 처리",
+      "addFiles": "파일을 드롭하거나 클릭하여 추가",
+      "clearAll": "모두 지우기",
+      "startProcessing": "처리 시작",
+      "cancelProcessing": "취소",
+      "downloadAll": "모두 다운로드",
+      "downloadZip": "ZIP으로 다운로드",
+      "pending": "대기 중",
+      "processing": "처리 중...",
+      "completed": "완료",
+      "error": "오류",
+      "progress": "전체 진행률",
+      "filesSelected": "파일 선택됨",
+      "noFiles": "아직 파일이 추가되지 않았습니다. 일괄 처리를 시작하려면 파일을 추가하세요."
+    },
+    "guidedTour": {
+      "startTour": "투어 시작",
+      "next": "다음",
+      "prev": "이전",
+      "finish": "완료",
+      "skip": "건너뛰기",
+      "stepOf": "/",
+      "welcomeTitle": "PDFCraft에 오신 것을 환영합니다!",
+      "welcomeMessage": "PDF 도구 사용법을 배우는 빠른 투어를 원하시나요? 1분 정도 소요됩니다.",
+      "helpButton": "도움말 투어"
+    },
+    "search": {
+      "placeholder": "도구 검색...",
+      "hint": "Enter로 선택, ↑↓로 이동",
+      "noResults": "도구를 찾을 수 없습니다"
+    },
+    "faqPage": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to common questions about {brand}",
+      "searchPlaceholder": "Search FAQs...",
+      "noResults": "No FAQs found matching your search.",
+      "expandAll": "Expand All",
+      "collapseAll": "Collapse All",
+      "categories": {
+        "all": "All",
+        "general": "General",
+        "privacy": "Privacy & Security",
+        "features": "Features",
+        "technical": "Technical",
+        "languages": "Languages"
+      },
+      "sections": {
+        "general": {
+          "whatIs": {
+            "question": "What is PDFCraft?",
+            "answer": "PDFCraft is a free, privacy-focused PDF toolkit that runs entirely in your browser. It offers 67+ professional tools for editing, converting, merging, splitting, and securing PDF files without uploading them to any server."
+          },
+          "isFree": {
+            "question": "Is PDFCraft really free?",
+            "answer": "Yes, PDFCraft is completely free to use. There are no hidden costs, no premium tiers, and no registration required. All features are available to everyone."
+          },
+          "account": {
+            "question": "Do I need to create an account?",
+            "answer": "No, you don't need to create an account or register to use PDFCraft. Simply visit the website and start using any tool immediately."
+          }
+        },
+        "privacy": {
+          "uploaded": {
+            "question": "Are my files uploaded to a server?",
+            "answer": "No, your files are never uploaded to any server. All PDF processing happens locally in your browser using JavaScript and WebAssembly. Your files never leave your device."
+          },
+          "safe": {
+            "question": "Is it safe to use PDFCraft with sensitive documents?",
+            "answer": "Yes, PDFCraft is designed with privacy in mind. Since all processing happens locally in your browser, your sensitive documents remain on your device and are never transmitted over the internet."
+          },
+          "storage": {
+            "question": "What happens to my files after processing?",
+            "answer": "Your files are stored temporarily in your browser's memory during processing. Once you close the browser tab or navigate away, all file data is automatically cleared. We don't store any of your files."
+          }
+        },
+        "features": {
+          "operations": {
+            "question": "What PDF operations can I perform?",
+            "answer": "PDFCraft offers 67+ tools including: merge, split, compress, convert (to/from images, text, JSON), edit, annotate, sign, add watermarks, encrypt/decrypt, OCR, and many more."
+          },
+          "merge": {
+            "question": "Can I merge multiple PDF files?",
+            "answer": "Yes, you can merge multiple PDF files into one. Simply use the Merge PDF tool, upload your files, arrange them in the desired order, and click merge."
+          },
+          "images": {
+            "question": "Can I convert images to PDF?",
+            "answer": "Yes, PDFCraft supports converting various image formats (JPG, PNG, WebP, BMP, TIFF, SVG, HEIC) to PDF. You can convert single or multiple images at once."
+          },
+          "edit": {
+            "question": "Can I edit text in a PDF?",
+            "answer": "PDFCraft provides annotation and editing tools including highlighting, adding text, shapes, images, and signatures. For full text editing, the PDF Editor tool offers comprehensive annotation capabilities."
+          }
+        },
+        "technical": {
+          "browsers": {
+            "question": "What browsers are supported?",
+            "answer": "PDFCraft works on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend using the latest version of your browser for the best experience."
+          },
+          "sizeLimit": {
+            "question": "Is there a file size limit?",
+            "answer": "Most tools support files up to 100MB, with some tools like merge and compress supporting up to 500MB. These limits are in place to ensure smooth performance in your browser."
+          },
+          "slow": {
+            "question": "Why is processing slow for large files?",
+            "answer": "Since all processing happens in your browser, performance depends on your device's capabilities. Large files require more memory and processing power. For best results, close other browser tabs and applications."
+          },
+          "offline": {
+            "question": "Does PDFCraft work offline?",
+            "answer": "Currently, PDFCraft requires an internet connection to load the application. However, once loaded, the PDF processing itself happens locally and doesn't require a connection."
+          }
+        },
+        "languages": {
+          "supported": {
+            "question": "What languages are supported?",
+            "answer": "PDFCraft is available in 9 languages: English, Japanese, Korean, Spanish, French, German, Chinese, Portuguese, and Arabic (with RTL support)."
+          },
+          "change": {
+            "question": "How do I change the language?",
+            "answer": "You can change the language using the language selector in the header. Your preference will be saved for future visits."
+          }
+        }
+      },
+      "cta": {
+        "title": "Still have questions?",
+        "description": "Can't find the answer you're looking for? Feel free to reach out to us.",
+        "button": "Contact Us"
+      }
+    },
+    "aboutPage": {
+      "title": "About {brand}",
+      "description": "{brand} is a free, privacy-focused PDF toolkit that runs entirely in your browser. With {count}+ professional tools, you can edit, convert, merge, split, and secure your PDF files without ever uploading them to a server.",
+      "mission": {
+        "title": "Our Mission",
+        "p1": "We believe that everyone should have access to powerful PDF tools without compromising their privacy or paying expensive subscription fees. That's why we created {brand} – a comprehensive PDF toolkit that puts your privacy first.",
+        "p2": "Unlike traditional PDF services that require you to upload your files to remote servers, {brand} processes everything locally in your browser. Your sensitive documents never leave your device, giving you complete control over your data.",
+        "p3": "Whether you're a student, professional, or casual user, {brand} provides all the tools you need to work with PDFs efficiently and securely."
+      },
+      "values": {
+        "title": "Our Values",
+        "privacy": {
+          "title": "Privacy First",
+          "description": "Your files never leave your device. All processing happens locally in your browser, ensuring complete privacy and security."
+        },
+        "fast": {
+          "title": "Fast & Efficient",
+          "description": "Powered by modern web technologies, PDFCraft delivers lightning-fast PDF processing without the need for uploads or downloads."
+        },
+        "accessible": {
+          "title": "Accessible Everywhere",
+          "description": "Available in 9 languages and works on any device with a modern browser. No installation required."
+        },
+        "free": {
+          "title": "Free Forever",
+          "description": "PDFCraft is completely free to use with no hidden costs, no registration required, and no limits on usage."
+        },
+        "openSource": {
+          "title": "Open Source",
+          "description": "Built with transparency in mind. Our code is open source, allowing anyone to verify our privacy claims."
+        },
+        "community": {
+          "title": "Community Driven",
+          "description": "Developed with feedback from users around the world. We continuously improve based on your needs."
+        }
+      },
+      "technology": {
+        "title": "Built with Modern Technology",
+        "description": "{brand} is built using cutting-edge web technologies to ensure the best possible experience:",
+        "list": {
+          "nextjs": "<strong1>Next.js</strong1> - For fast, SEO-friendly page rendering",
+          "wasm": "<strong1>WebAssembly</strong1> - For near-native PDF processing performance",
+          "workers": "<strong1>Web Workers</strong1> - For non-blocking background processing",
+          "pdflib": "<strong1>pdf-lib & PDF.js</strong1> - Industry-standard PDF manipulation libraries",
+          "indexeddb": "<strong1>IndexedDB</strong1> - For secure local storage of your work"
+        },
+        "summary": "This combination of technologies allows us to provide professional-grade PDF tools that run entirely in your browser, without any server-side processing."
+      },
+      "cta": {
+        "title": "Ready to Get Started?",
+        "description": "Explore our {count}+ PDF tools and see what {brand} can do for you.",
+        "button": "Browse All Tools"
+      }
+    },
+    "contactPage": {
+      "hero": {
+        "title": "문의하기",
+        "description": "질문이나 제안 사항이 있거나 버그를 발견하셨나요? 여러분의 의견을 기다립니다."
+      },
+      "methods": {
+        "email": {
+          "title": "이메일",
+          "description": "이메일을 보내주시면 24-48시간 이내에 답변해 드립니다.",
+          "action": "contact@pdfcraft.app"
+        },
+        "github": {
+          "title": "GitHub",
+          "description": "버그 신고, 기능 요청 또는 프로젝트 기여.",
+          "action": "GitHub에서 보기"
+        },
+        "twitter": {
+          "title": "Twitter",
+          "description": "업데이트 및 공지 사항 팔로우.",
+          "action": "@pdfcraft"
+        }
+      },
+      "form": {
+        "title": "메시지 보내기",
+        "description": "아래 양식을 작성해 주시면 가능한 한 빨리 연락드리겠습니다.",
+        "success": {
+          "title": "메시지 전송됨!",
+          "description": "연락해 주셔서 감사합니다. 24-48시간 이내에 답변드리겠습니다.",
+          "button": "새 메시지 보내기"
+        },
+        "fields": {
+          "name": {
+            "label": "이름",
+            "placeholder": "이름 입력"
+          },
+          "email": {
+            "label": "이메일",
+            "placeholder": "your@email.com"
+          },
+          "subject": {
+            "label": "주제",
+            "placeholder": "주제 선택",
+            "options": {
+              "general": "일반 문의",
+              "bug": "버그 신고",
+              "feature": "기능 요청",
+              "feedback": "피드백",
+              "other": "기타"
+            }
+          },
+          "message": {
+            "label": "메시지",
+            "placeholder": "문의 내용에 대해 자세히 알려주세요..."
+          }
+        },
+        "error": "문제가 발생했습니다. 다시 시도하거나 이메일로 직접 문의해 주세요.",
+        "submit": {
+          "loading": "전송 중...",
+          "default": "메시지 보내기"
+        }
+      },
+      "faq": {
+        "title": "빠른 답변을 찾고 계신가요?",
+        "description": "{brand}에 대한 자주 묻는 질문은 FAQ 페이지를 확인하세요.",
+        "button": "FAQ 보기"
+      }
+    },
+    "accessibility": {
+      "skipToContent": "Skip to main content",
+      "skipToNavigation": "Skip to navigation",
+      "loading": "Loading, please wait",
+      "menuExpanded": "Menu expanded",
+      "menuCollapsed": "Menu collapsed",
+      "newWindow": "Opens in new window",
+      "externalLink": "External link",
+      "required": "Required field",
+      "optional": "Optional",
+      "selected": "Selected",
+      "notSelected": "Not selected",
+      "pageOf": "Page {current} of {total}",
+      "sortAscending": "Sort ascending",
+      "sortDescending": "Sort descending",
+      "closeDialog": "Close dialog",
+      "expandSection": "Expand section",
+      "collapseSection": "Collapse section"
+    },
+    "options": {
+      "auto": "Auto",
+      "portrait": "Portrait",
+      "landscape": "Landscape"
+    }
+  },
+  "errors": {
+    "fileTooLarge": "파일이 너무 큽니다. 최대 크기는 {maxSize}MB입니다.",
+    "fileTypeInvalid": "잘못된 파일 형식입니다. {acceptedTypes} 파일을 업로드해 주세요.",
+    "fileCorrupted": "파일이 손상되었거나 읽을 수 없습니다.",
+    "fileEmpty": "파일이 비어 있습니다.",
+    "fileNotPdf": "파일이 유효한 PDF가 아닙니다.",
+    "processingFailed": "처리에 실패했습니다. 다시 시도해 주세요.",
+    "processingCancelled": "작업이 취소되었습니다.",
+    "networkError": "네트워크 오류. 연결을 확인해 주세요.",
+    "pdfEncrypted": "이 PDF는 비밀번호로 보호되어 있습니다. 먼저 암호를 해제해 주세요.",
+    "pdfMalformed": "PDF 구조가 잘못되었습니다. 먼저 복구 도구를 사용해 보세요.",
+    "processingTimeout": "작업 시간이 너무 오래 걸렸습니다. 더 작은 파일로 시도해 주세요.",
+    "memoryExceeded": "브라우저 메모리가 부족합니다. 다른 탭을 닫고 다시 시도해 주세요.",
+    "workerFailed": "처리 워커가 충돌했습니다. 페이지를 새로고침하고 다시 시도해 주세요.",
+    "browserNotSupported": "브라우저가 이 기능을 지원하지 않습니다.",
+    "invalidPageRange": "잘못된 페이지 범위가 지정되었습니다.",
+    "invalidOptions": "잘못된 옵션이 제공되었습니다.",
+    "unknown": "예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.",
+    "toolNotFound": "Tool Not Found"
+  },
+  "home": {
+    "hero": {
+      "title": "전문 PDF 도구",
+      "highlight": "전문 도구",
+      "subtitle": "브라우저에서 무료로 안전하고 강력하게 PDF 처리",
+      "cta": "시작하기"
+    },
+    "features": {
+      "privacy": {
+        "title": "100% 비공개",
+        "description": "모든 처리는 브라우저에서 이루어집니다. 파일은 기기를 벗어나지 않습니다."
+      },
+      "free": {
+        "title": "완전 무료",
+        "description": "등록 없음, 제한 없음, 숨겨진 비용 없음."
+      },
+      "powerful": {
+        "title": "강력한 도구",
+        "description": "모든 필요를 충족하는 67개 이상의 전문 PDF 도구."
+      }
+    },
+    "popularTools": {
+      "badge": "가장 인기 있는",
+      "title": "인기 PDF 도구",
+      "description": "작업을 더 빨리 완료하는 데 도움이 되는 가장 많이 사용되는 도구입니다."
+    },
+    "categoriesSection": {
+      "title": "모든 도구 카테고리 탐색",
+      "description": "카테고리별로 정리된 {count}개 이상의 전문 PDF 도구",
+      "toolsCount": "{count}개 도구"
+    },
+    "categoriesDescription": {
+      "editAnnotate": "PDF 콘텐츠 편집, 주석 및 수정",
+      "convertToPdf": "다양한 형식을 PDF로 변환",
+      "convertFromPdf": "PDF를 다른 형식으로 변환",
+      "organizeManage": "PDF 페이지 정리, 병합, 분할 및 관리",
+      "optimizeRepair": "PDF 파일 압축, 최적화 및 복구",
+      "securePdf": "PDF 파일 암호화, 복호화 및 보안"
+    },
+    "stats": {
+      "pdfTools": "PDF 도구",
+      "freeToUse": "무료 사용",
+      "languages": "언어",
+      "filesUploaded": "파일 업로드됨"
+    },
+    "categories": {
+      "popular": "인기 도구",
+      "editAnnotate": "편집 및 주석",
+      "convertToPdf": "PDF로 변환",
+      "convertFromPdf": "PDF에서 변환",
+      "organizeManage": "정리 및 관리",
+      "optimizeRepair": "최적화 및 복구",
+      "securePdf": "PDF 보안"
+    }
+  },
+  "workflow": {
+    "title": "PDF 워크플로우 편집기",
+    "subtitle": "도구를 연결하여 맞춤형 PDF 처리 파이프라인 생성",
+    "metaTitle": "PDF 워크플로우 편집기 - PDFCraft",
+    "metaDescription": "도구를 시각적으로 연결하여 맞춤형 PDF 처리 파이프라인을 생성하세요. 워크플로우를 구축, 저장 및 재사용하세요.",
+    "toolbox": "도구 상자",
+    "dragToAdd": "워크플로우에 도구를 드래그하여 추가",
+    "searchTools": "도구 검색...",
+    "toolsAvailable": "개의 도구 사용 가능",
+    "templates": "템플릿",
+    "saved": "저장됨",
+    "favorites": "즐겨찾기",
+    "allCategories": "모두",
+    "common": "일반",
+    "conversion": "변환",
+    "optimization": "최적화",
+    "security": "보안",
+    "noSavedWorkflows": "저장된 워크플로우가 없습니다",
+    "saveWorkflowHint": "첫 번째 워크플로우를 생성하고 저장하세요",
+    "noFavorites": "즐겨찾기 워크플로우가 없습니다",
+    "favoriteHint": "워크플로우에 별표를 표시하여 여기에 추가",
+    "selectFiles": "파일 선택",
+    "filesSelected": "개 파일 선택됨",
+    "execute": "실행",
+    "running": "실행 중",
+    "complete": "완료",
+    "error": "오류",
+    "issues": "개의 문제",
+    "stop": "중지",
+    "validationErrors": "검증 오류",
+    "warnings": "경고",
+    "executionFailed": "워크플로 실행 실패",
+    "retry": "재시도",
+    "nodes": "개 노드",
+    "import": "가져오기",
+    "clear": "지우기",
+    "saveWorkflow": "워크플로우 저장",
+    "workflowName": "워크플로우 이름",
+    "enterName": "워크플로우 이름 입력...",
+    "description": "설명",
+    "optional": "선택사항",
+    "enterDescription": "설명 입력...",
+    "workflowComplete": "워크플로우가 성공적으로 완료되었습니다!",
+    "downloadResults": "결과 다운로드",
+    "emptyTitle": "워크플로우 만들기",
+    "emptyDescription": "사이드바에서 도구를 드래그하여 PDF 처리 파이프라인을 구축하세요. 노드를 연결하여 처리 순서를 정의하세요.",
+    "clickHint": "노드를 클릭하여 설정 구성",
+    "undo": "실행 취소",
+    "redo": "다시 실행",
+    "noSettings": "이 도구에 대한 구성 가능한 설정이 없습니다",
+    "reset": "재설정",
+    "cancel": "취소",
+    "apply": "적용",
+    "preview": "미리보기",
+    "showPreview": "미리보기 표시",
+    "noFilesForPreview": "미리보기할 파일을 선택하세요",
+    "generatingPreview": "미리보기 생성 중...",
+    "noPreviewAvailable": "미리보기를 사용할 수 없습니다",
+    "selectedFiles": "선택된 파일",
+    "filesCount": "파일",
+    "viewEditFiles": "파일 보기/편집",
+    "moveUp": "위로 이동",
+    "moveDown": "아래로 이동",
+    "removeFile": "삭제",
+    "clearAll": "모두 지우기",
+    "previewNotAvailable": "이 파일 유형은 미리보기를 사용할 수 없습니다",
+    "confirm": "확인",
+    "collapseSidebar": "사이드바 접기",
+    "expandSidebar": "사이드바 펼치기",
+    "library": "라이브러리",
+    "connections": "연결",
+    "history": "기록",
+    "executionHistory": "실행 기록",
+    "totalExecutions": "전체 실행 횟수",
+    "successRate": "성공률",
+    "avgDuration": "평균 소요 시간",
+    "noHistory": "아직 실행 기록이 없습니다",
+    "noHistoryHint": "워크플로를 실행하면 여기에 기록이 표시됩니다",
+    "confirmDelete": "이 기록을 삭제하시겠습니까?",
+    "confirmClearAllHistory": "모든 기록을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+    "unnamedWorkflow": "이름 없는 워크플로",
+    "nodesSuccess": "개 노드 성공",
+    "nodesFailed": "실패",
+    "loadWorkflow": "워크플로 불러오기",
+    "viewDetails": "상세 보기",
+    "detailsInConsole": "상세 내용이 콘솔(F12)에 기록되었습니다",
+    "workflowTemplates": {
+      "mergeCompress": {
+        "name": "병합 및 압축",
+        "description": "여러 PDF를 병합하고 결과를 압축하여 파일 크기를 줄입니다"
+      },
+      "imagesToWatermarkedPdf": {
+        "name": "이미지를 워터마크 PDF로",
+        "description": "이미지를 PDF로 변환하고 사용자 정의 워터마크를 추가합니다"
+      },
+      "pdfToImages": {
+        "name": "PDF를 압축 이미지로",
+        "description": "PDF 페이지를 JPG 이미지로 변환합니다"
+      },
+      "securePdf": {
+        "name": "보안 PDF 생성",
+        "description": "PDF를 병합하고 워터마크를 추가하며 비밀번호로 암호화합니다"
+      },
+      "documentPrep": {
+        "name": "문서 준비",
+        "description": "PDF를 병합하고 페이지 번호와 머리글/바닥글을 추가합니다"
+      },
+      "optimizeForWeb": {
+        "name": "웹 최적화",
+        "description": "빠른 웹 보기를 위해 PDF를 압축하고 선형화합니다"
+      },
+      "splitAndWatermark": {
+        "name": "분할 및 워터마크",
+        "description": "PDF를 개별 페이지로 분할하고 각 페이지에 워터마크를 추가합니다"
+      },
+      "officeToMergedPdf": {
+        "name": "Office 파일을 하나의 PDF로",
+        "description": "Word 문서를 PDF로 변환하고 병합합니다"
+      },
+      "rotateAndNumber": {
+        "name": "회전 및 페이지 번호 추가",
+        "description": "PDF 페이지를 회전하고 페이지 번호를 추가합니다"
+      },
+      "printReady": {
+        "name": "인쇄용 문서",
+        "description": "페이지 번호를 추가하고 평탄화하여 인쇄용 PDF를 준비합니다"
+      },
+      "grayscaleCompress": {
+        "name": "회색조 및 압축",
+        "description": "회색조로 변환하고 파일 크기를 줄이기 위해 압축합니다"
+      },
+      "extractAndMerge": {
+        "name": "페이지 추출 및 병합",
+        "description": "특정 페이지를 추출하여 새 문서로 병합합니다"
+      },
+      "confidentialDocument": {
+        "name": "기밀 문서",
+        "description": "기밀 워터마크를 추가하고 PDF를 암호화합니다"
+      },
+      "pdfToEditableDoc": {
+        "name": "PDF를 편집 가능 문서로",
+        "description": "편집을 위해 PDF를 Word 문서로 변환합니다"
+      },
+      "fullOptimization": {
+        "name": "전체 문서 최적화",
+        "description": "최적의 성능을 위해 압축, 평탄화 및 선형화를 수행합니다"
+      },
+      "pdfToPresentation": {
+        "name": "PDF를 PowerPoint로",
+        "description": "PDF를 편집 가능한 PowerPoint 프레젠테이션으로 변환합니다"
+      },
+      "unlockAndEdit": {
+        "name": "PDF 잠금 해제 및 편집",
+        "description": "편집을 위해 보호된 PDF를 복호화합니다"
+      },
+      "ebookConvert": {
+        "name": "eBook을 PDF로",
+        "description": "EPUB 전자책을 PDF 형식으로 변환합니다"
+      },
+      "batchWatermark": {
+        "name": "일괄 워터마크",
+        "description": "여러 PDF 파일에 한 번에 워터마크를 추가합니다"
+      },
+      "archivePrep": {
+        "name": "아카이브 준비",
+        "description": "메타 데이터를 삭제하고 평탄화 및 압축하여 장기 보관을 준비합니다"
+      },
+      "reportAssembly": {
+        "name": "보고서 작성",
+        "description": "문서를 병합하고 페이지 번호, 머리글/바닥글 및 목차를 추가합니다"
+      },
+      "invoiceProcessing": {
+        "name": "송장 처리",
+        "description": "페이지를 추출하고 워터마크를 추가하며 이메일용으로 압축합니다"
+      },
+      "photoAlbum": {
+        "name": "포토 앨범 생성기",
+        "description": "이미지를 페이지 번호가 포함된 PDF로 변환합니다"
+      },
+      "cropAndResize": {
+        "name": "자르기 및 크기 조정",
+        "description": "PDF 페이지를 자르고 페이지 크기를 조정합니다"
+      }
+    }
+  },
+  "toolsPage": {
+    "title": "Professional PDF Tools",
+    "subtitle": "{count}+ free, secure, and easy-to-use tools for all your PDF needs.",
+    "filters": "Filters",
+    "allTools": "All Tools",
+    "clearAll": "Clear all",
+    "clearFilters": "Clear filters",
+    "showingAll": "Showing all {count} tools",
+    "showingFiltered": "Showing {filtered} of {total} tools",
+    "forQuery": "for \"{query}\"",
+    "inCategory": "in {category}",
+    "noToolsFound": "No tools found"
+  },
+  "tools": {
+    "search": {
+      "placeholder": "도구 검색...",
+      "noResults": "\"{query}\"에 대한 도구를 찾을 수 없습니다"
+    },
+    "relatedTools": "관련 도구",
+    "about": "이 도구에 대하여",
+    "howToUse": "사용 방법",
+    "useCases": "활용 사례",
+    "faq": "자주 묻는 질문",
+    "comingSoon": "이 도구는 곧 공개될 예정입니다.",
+    "successTitle": "변환 성공!",
+    "favorite": {
+      "add": "즐겨찾기에 추가",
+      "remove": "즐겨찾기에서 제거",
+      "saved": "저장됨",
+      "title": "즐겨찾기 도구",
+      "empty": "즐겨찾기 도구가 아직 없습니다",
+      "hint": "도구의 별 아이콘을 클릭하면 빠른 액세스를 위해 여기에 저장됩니다."
+    },
+    "quality": {
+      "title": "출력 품질",
+      "low": "낮음",
+      "medium": "중간",
+      "high": "높음",
+      "hint": "품질이 높을수록 파일 크기가 커지고 변환 시간이 오래 걸립니다."
+    },
+    "mergePdf": {
+      "uploadLabel": "Upload PDF Files",
+      "uploadDescription": "Drag and drop PDF files here, or click to browse. You can add multiple files.",
+      "filesTitle": "Files to Merge",
+      "reorderHint": "Drag and drop to reorder files. Files will be merged in the order shown.",
+      "optionsTitle": "Merge Options",
+      "preserveBookmarks": "Preserve bookmarks (create bookmark for each file)",
+      "mergeButton": "Merge PDFs",
+      "successMessage": "PDFs merged successfully! Click the download button to save your file."
+    },
+    "splitPdf": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF 파일을 여기에 드래그 앤 드롭하거나 클릭하여 찾아보세요.",
+      "splitModeTitle": "분할 방법",
+      "splitModeLabel": "분할 모드",
+      "modeRanges": "페이지 범위로 추출 (기본값)",
+      "modeEvenOdd": "짝수/홀수 페이지로 분할",
+      "modeEveryPage": "모든 페이지를 개별 파일로 분할",
+      "modeVisual": "시각적으로 페이지 선택",
+      "modeBookmarks": "북마크로 분할",
+      "modeNTimes": "N분할",
+      "rangeInputLabel": "페이지 범위",
+      "rangeInputHint": "쉼표로 구분된 페이지 번호 또는 범위를 입력하세요. 각 범위가 별도의 파일이 됩니다.",
+      "evenOddLabel": "페이지 추출",
+      "oddPagesOnly": "홀수 페이지만",
+      "evenPagesOnly": "짝수 페이지만",
+      "bothSeparate": "둘 다 (별도 파일)",
+      "evenOddHint": "홀수 페이지: 1, 3, 5... 짝수 페이지: 2, 4, 6...",
+      "everyPageInfo": "각 페이지가 개별 PDF 파일로 추출됩니다. {count}개의 파일이 생성됩니다.",
+      "visualInfo": "아래 썸네일을 클릭하여 추출할 페이지를 선택하세요. 선택한 페이지는 단일 PDF로 결합되거나 개별 파일로 분할됩니다.",
+      "bookmarksNotice": "참고: 북마크로 분할하려면 PDF에 북마크가 있어야 합니다. 북마크가 없으면 전체 PDF가 단일 파일로 반환됩니다.",
+      "splitCountLabel": "분할 수",
+      "splitCountHint": "{count}등분으로 분할 (각 약 {pages}페이지)",
+      "pagePreviewTitle": "페이지 선택",
+      "splitButton": "PDF 분할",
+      "resultsTitle": "분할 결과",
+      "successMessage": "PDF가 성공적으로 분할되었습니다! 다운로드 버튼을 클릭하여 파일을 저장하세요.",
+      "modeVisualShort": "시각적 선택",
+      "modeBookmarksShort": "북마크",
+      "modeNTimesShort": "N분할",
+      "downloadZip": "ZIP으로 모두 다운로드"
+    },
+    "deletePages": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "selectTitle": "Select Pages to Delete",
+      "selectHint": "Click pages to select them for deletion, or enter page numbers/ranges above.",
+      "warning": "Warning",
+      "warningText": "Selected pages will be permanently removed from the PDF. At least one page must remain.",
+      "deleteButton": "Delete Pages",
+      "successMessage": "Pages deleted successfully! Click the download button to save your file.",
+      "pageRange": "페이지 범위",
+      "pageRangePlaceholder": "예: 1, 3-5, 8"
+    },
+    "extractPages": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "selectTitle": "Select Pages to Extract",
+      "selectHint": "Click pages to select them, or enter page numbers/ranges above.",
+      "extractButton": "Extract Pages",
+      "successMessage": "Pages extracted successfully! Click the download button to save your file.",
+      "pageRange": "페이지 범위",
+      "pageRangePlaceholder": "예: 1-5, 8, 10-12"
+    },
+    "posterizePdf": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "optionsTitle": "Posterize Options",
+      "rows": "Rows",
+      "cols": "Columns",
+      "pageSize": "Output Page Size",
+      "orientation": "Orientation",
+      "overlap": "Overlap",
+      "scalingMode": "Scaling Mode",
+      "fit": "Fit (preserve aspect ratio)",
+      "fill": "Fill (may crop)",
+      "pageRange": "Page Range (optional)",
+      "pageRangePlaceholder": "e.g., 1-5, 8, 10-15 (leave empty for all pages)",
+      "previewInfo": "Each page will be split into {rows}×{cols} = {total} tiles.",
+      "createButton": "Posterize PDF",
+      "successMessage": "PDF posterized successfully! Click the download button to save your file."
+    },
+    "pdfMultiTool": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF 파일을 여기에 드래그 앤 드롭하거나 클릭하여 찾아보세요. 여러 파일을 업로드할 수 있습니다.",
+      "addMoreFiles": "PDF 파일 더 추가",
+      "organize": "정리",
+      "delete": "삭제",
+      "rotate": "회전",
+      "duplicate": "복제",
+      "addBlank": "빈 페이지 추가",
+      "organizeHint": "페이지를 드래그 앤 드롭하여 순서 변경.",
+      "deleteHint": "삭제할 페이지를 클릭하세요.",
+      "rotateHint": "페이지의 회전 버튼을 클릭하거나 모두 회전:",
+      "duplicateHint": "복제 버튼을 클릭하여 페이지를 복사하세요.",
+      "reset": "재설정",
+      "undo": "실행 취소",
+      "redo": "다시 실행",
+      "selectAll": "모두 선택",
+      "deselectAll": "선택 해제",
+      "rotateLeft": "왼쪽 회전",
+      "rotateRight": "오른쪽 회전",
+      "exportPDF": "PDF 내보내기",
+      "downloadSelected": "선택 항목 다운로드",
+      "clearAll": "모두 지우기",
+      "addBlankPageTitle": "빈 페이지 추가",
+      "numberOfPages": "페이지 수",
+      "insertPosition": "삽입 위치",
+      "processButton": "변경 사항 적용",
+      "successMessage": "PDF 처리 완료! 다운로드 버튼을 클릭하여 파일을 저장하세요."
+    },
+    "viewMetadata": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here to view its metadata.",
+      "documentProperties": "Document Properties",
+      "title": "Title",
+      "author": "Author",
+      "subject": "Subject",
+      "keywords": "Keywords",
+      "creator": "Creator Application",
+      "producer": "PDF Producer",
+      "dates": "Dates",
+      "creationDate": "Creation Date",
+      "modificationDate": "Modification Date",
+      "documentInfo": "Document Information",
+      "pageCount": "Page Count",
+      "fileSize": "File Size",
+      "pdfVersion": "PDF Version",
+      "isLinearized": "Linearized (Fast Web View)",
+      "customMetadata": "Additional Metadata",
+      "exportJson": "Export as JSON",
+      "successMessage": "Metadata extracted successfully! You can export it as JSON if needed."
+    },
+    "editMetadata": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here to edit its metadata.",
+      "editTitle": "Edit Document Properties",
+      "title": "Title",
+      "titlePlaceholder": "Enter document title",
+      "author": "Author",
+      "authorPlaceholder": "Enter author name",
+      "subject": "Subject",
+      "subjectPlaceholder": "Enter document subject",
+      "keywords": "Keywords",
+      "keywordsPlaceholder": "Enter keywords separated by commas",
+      "creator": "Creator Application",
+      "creatorPlaceholder": "Enter creator application",
+      "producer": "PDF Producer",
+      "producerPlaceholder": "Enter PDF producer",
+      "resetButton": "Reset",
+      "saveButton": "Save Metadata",
+      "editAnother": "Edit Another PDF",
+      "modificationNote": "The modification date will be updated automatically when you save.",
+      "successMessage": "Metadata updated successfully! Click the download button to save your file."
+    },
+    "editPdf": {
+      "uploadLabel": "Upload PDF to Edit",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "instructions": "How to use",
+      "instructionsText": "Use the toolbar above the PDF to add text, draw, highlight, or add images. Click the download button (💾) in the toolbar to save your edited PDF.",
+      "saveButton": "Save PDF",
+      "saveDownload": "Save & Download",
+      "saveError": "Failed to save PDF. Please use the export button in the toolbar.",
+      "savingMessage": "Saving PDF with annotations...",
+      "successMessage": "PDF saved successfully! Click the download button to save your edited file.",
+      "redactWarningTitle": "Redaction Mode Active",
+      "redactWarningDescription": "Select areas to permanently remove content. Redacted content cannot be recovered after saving.",
+      "toolbar": {
+        "select": "Select",
+        "highlight": "Highlight",
+        "underline": "Underline",
+        "strikethrough": "Strikethrough",
+        "text": "Text",
+        "draw": "Draw",
+        "rectangle": "Rectangle",
+        "circle": "Circle",
+        "arrow": "Arrow",
+        "image": "Image",
+        "redact": "Redact"
+      },
+      "options": {
+        "highlightColor": "Highlight Color",
+        "textColor": "Text Color",
+        "fontSize": "Font Size",
+        "inkColor": "Ink Color",
+        "inkThickness": "Ink Thickness"
+      }
+    },
+    "imageToPdf": {
+      "uploadLabel": "Upload Images",
+      "uploadDescription": "Drag and drop images here, or click to browse. Supports JPG, PNG, WebP, BMP, TIFF, SVG, HEIC.",
+      "imagesTitle": "Images",
+      "reorderHint": "Drag and drop to reorder images. Images will appear in the PDF in the order shown.",
+      "convertButton": "Convert to PDF",
+      "optionsTitle": "PDF Options",
+      "pageSize": "Page Size",
+      "orientation": "Orientation",
+      "orientationAuto": "Auto (match image)",
+      "orientationPortrait": "Portrait",
+      "orientationLandscape": "Landscape",
+      "margin": "Margin",
+      "marginNone": "None",
+      "marginSmall": "Small (0.25\")",
+      "marginMedium": "Medium (0.5\")",
+      "marginLarge": "Large (1\")",
+      "centerImage": "Center images on page",
+      "scaleToFit": "Scale images to fit page",
+      "imageQuality": "Image Quality",
+      "fitMode": "Fit Mode",
+      "fitPage": "Fit to Page",
+      "fillPage": "Fill Page",
+      "originalSize": "Original Size",
+      "svgQuality": "SVG Export Quality",
+      "svgQualityLow": "Low (1x - smaller file)",
+      "svgQualityMedium": "Medium (2x - balanced)",
+      "svgQualityHigh": "High (3x - better quality)",
+      "svgQualityVeryHigh": "Very High (4x - best quality)",
+      "svgQualityHint": "Higher quality produces sharper images but larger file sizes.",
+      "batchMode": "여러 PDF로 분할",
+      "imagesPerPdf": "PDF당 이미지 수",
+      "batchModeHint": "{pdfCount}개의 PDF 파일이 생성되어 ZIP 아카이브로 패키징됩니다.",
+      "batchSuccessMessage": "{imageCount}개의 이미지에서 {pdfCount}개의 PDF 파일을 성공적으로 생성했습니다! 다운로드 버튼을 클릭하여 ZIP 아카이브를 저장하세요.",
+      "successMessage": "Images converted to PDF successfully! Click the download button to save your file.",
+      "fitToImage": "이미지 크기에 맞춤"
+    },
+    "compressPdf": {
+      "uploadLabel": "Upload PDF Files",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "batchUploadDescription": "Drag and drop PDF files here. You can compress up to 10 files at once.",
+      "filesTitle": "Files to Compress",
+      "optionsTitle": "Compression Options",
+      "qualityLabel": "Compression Quality",
+      "qualityLow": "Low",
+      "qualityLowDesc": "Maximum compression with object stream optimization",
+      "qualityMedium": "Medium",
+      "qualityMediumDesc": "Balanced compression with structure optimization",
+      "qualityHigh": "High",
+      "qualityHighDesc": "Moderate compression, preserves more structure",
+      "qualityMaximum": "Maximum",
+      "qualityMaximumDesc": "Minimal compression, preserves original quality",
+      "optimizeImages": "Optimize embedded images",
+      "removeMetadata": "Remove metadata (title, author, etc.)",
+      "compressButton": "Compress PDFs",
+      "successMessage": "PDF compressed successfully!",
+      "batchSuccessMessage": "Successfully compressed all PDF files!",
+      "downloadAllZip": "Download All as ZIP",
+      "originalSize": "Original:",
+      "compressedSize": "Compressed:",
+      "saved": "Saved:",
+      "algorithmLabel": "압축 알고리즘",
+      "algorithmStandard": "표준",
+      "algorithmCondense": "응축",
+      "algorithmPhoton": "Photon",
+      "algorithmStandardDesc": "객체 스트림을 사용한 범용 압축",
+      "algorithmCondenseDesc": "상호작용성을 유지하면서 구조 최적화",
+      "algorithmPhotonDesc": "페이지를 래스터화함 — 이미지가 많은 PDF에 적합",
+      "photonWarning": "참고: Photon은 페이지를 이미지로 변환하므로 텍스트 품질이 저하되거나 상호작용성(링크, 양식)이 손실될 수 있습니다.",
+      "photonDpiLabel": "출력 DPI",
+      "photonDpiDesc": "DPI가 높을수록 품질은 좋아지나 파일 크기는 커짐"
+    },
+    "signPdf": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file to sign.",
+      "instructionsTitle": "How to Sign",
+      "instruction1": "Click the Signature tool (pen icon) in the toolbar",
+      "instruction2": "Draw, type, or upload your signature",
+      "instruction3": "Click where you want to place the signature",
+      "instruction4": "Click \"Save Signed PDF\" below when done",
+      "flattenOption": "Flatten signature (recommended - makes signature permanent)",
+      "saveButton": "Save Signed PDF",
+      "successMessage": "PDF signed successfully!"
+    },
+    "cropPdf": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file to crop.",
+      "pages": "pages",
+      "applyToAll": "Apply to all pages",
+      "cropButton": "Crop PDF",
+      "successMessage": "PDF cropped successfully!",
+      "zoomIn": "Zoom In",
+      "zoomOut": "Zoom Out",
+      "resetZoom": "Reset Zoom",
+      "reset": "Reset",
+      "fullscreen": "Fullscreen",
+      "exitFullscreen": "Exit Fullscreen",
+      "marginTop": "Margin Top",
+      "marginBottom": "Margin Bottom",
+      "marginLeft": "Margin Left",
+      "marginRight": "Margin Right",
+      "optionsTitle": "Crop Options",
+      "page": "페이지"
+    },
+    "organizePdf": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "페이지를 정리하려면 PDF 파일을 드래그 앤 드롭하세요.",
+      "reorderTitle": "드래그하여 페이지 순서 변경",
+      "reverseOrder": "순서 뒤집기",
+      "resetOrder": "순서 초기화",
+      "reorderHint": "페이지를 드래그 앤 드롭하여 순서를 변경합니다. 화살표를 사용하여 페이지를 위아래로 이동할 수 있습니다.",
+      "orderChanged": "페이지 순서가 변경되었습니다. \"변경 사항 적용\"을 클릭하여 저장하세요.",
+      "applyButton": "변경 사항 적용",
+      "successMessage": "PDF 페이지가 성공적으로 재정렬되었습니다! 다운로드 버튼을 클릭하여 파일을 저장하세요.",
+      "duplicatePage": "복제",
+      "deletePage": "삭제",
+      "cannotDeleteLast": "마지막 페이지는 삭제할 수 없습니다"
+    },
+    "repairPdf": {
+      "uploadLabel": "Upload PDF Files",
+      "uploadDescription": "Drag and drop PDF files to repair.",
+      "filesTitle": "Files to Repair",
+      "repairButton": "Repair PDFs",
+      "successMessage": "PDF repaired successfully!"
+    },
+    "dividePages": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "optionsTitle": "Division Options",
+      "divisionType": "Division Type",
+      "vertical": "Vertical",
+      "horizontal": "Horizontal",
+      "grid2x2": "2×2 Grid",
+      "grid3x3": "3×3 Grid",
+      "previewInfo": "Each page will be divided based on the selected option.",
+      "divideButton": "Divide Pages",
+      "successMessage": "Pages divided successfully!"
+    },
+    "extractAttachments": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "첨부 파일을 추출할 PDF 파일을 선택하세요.",
+      "filesTitle": "선택된 파일",
+      "extractButton": "첨부 파일 추출",
+      "extractedTitle": "추출된 첨부 파일",
+      "downloadAll": "모두 다운로드",
+      "successMessage": "첨부 파일이 성공적으로 추출되었습니다!"
+    },
+    "extractImages": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "이미지를 추출할 PDF 파일을 선택하세요.",
+      "filesTitle": "선택된 파일",
+      "filterTitle": "필터 옵션",
+      "filterDescription": "작은 이미지 필터링 (아이콘, 장식 등)",
+      "minWidth": "최소 너비 (px)",
+      "minHeight": "최소 높이 (px)",
+      "minSizeKB": "최소 크기 (KB)",
+      "extractButton": "이미지 추출",
+      "extractedTitle": "추출된 이미지",
+      "downloadAll": "모두 다운로드",
+      "downloadZip": "ZIP으로 다운로드",
+      "page": "페이지",
+      "successMessage": "이미지가 성공적으로 추출되었습니다! 개별 이미지를 클릭하여 다운로드하거나 \"ZIP으로 다운로드\"를 사용하세요.",
+      "optionsTitle": "설정",
+      "format": "출력 형식",
+      "minSize": "최소 크기 (px)"
+    },
+    "encryptPdf": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "passwordTitle": "Password Settings",
+      "privacyNotice": "🔒 Your passwords are processed locally and never sent to any server.",
+      "userPasswordLabel": "User Password (to open document)",
+      "userPasswordPlaceholder": "Enter password to open PDF",
+      "userPasswordHint": "Required to open and view the PDF.",
+      "ownerPasswordLabel": "Owner Password (to change permissions)",
+      "ownerPasswordPlaceholder": "Enter owner password",
+      "ownerPasswordHint": "Required to modify permissions or remove encryption.",
+      "permissionsTitle": "Document Permissions",
+      "permPrinting": "Allow Printing",
+      "permModifying": "Allow Modifying",
+      "permCopying": "Allow Copying",
+      "permAnnotating": "Allow Annotating",
+      "permFillingForms": "Allow Filling Forms",
+      "permAccessibility": "Allow Accessibility",
+      "permAssembly": "Allow Assembly",
+      "encryptButton": "Encrypt PDF",
+      "successMessage": "PDF encrypted successfully!",
+      "successHint": "Remember to save your passwords securely."
+    },
+    "decryptPdf": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop an encrypted PDF file.",
+      "passwordTitle": "Enter Password",
+      "privacyNotice": "🔒 Your password is processed locally and never sent to any server.",
+      "passwordLabel": "PDF Password",
+      "passwordPlaceholder": "Enter the PDF password",
+      "passwordHint": "Leave empty if the PDF only has owner password restrictions.",
+      "decryptButton": "Decrypt PDF",
+      "successMessage": "PDF decrypted successfully!",
+      "successHint": "The PDF is now unlocked and can be opened without a password.",
+      "invalidPassword": "The password you entered is incorrect. Please check and try again."
+    },
+    "rotatePdf": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file to rotate pages.",
+      "optionsTitle": "Rotation Options",
+      "rotateTitle": "Rotate Pages",
+      "hint": "Click the rotation buttons on each page to rotate individually, or use the buttons above to rotate all pages.",
+      "rotateAll": "Rotate All Pages",
+      "rotateButton": "Rotate PDF",
+      "successMessage": "PDF pages rotated successfully! Click the download button to save your file.",
+      "angle": "Angle",
+      "rotateRight": "Rotate Right 90°",
+      "rotateLeft": "Rotate Left 90°",
+      "rotate180": "Rotate 180°",
+      "applyTo": "Apply to",
+      "allPages": "All Pages",
+      "oddPages": "Odd Pages",
+      "evenPages": "Even Pages"
+    },
+    "rotateCustom": {
+      "title": "Custom Rotation",
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "setAllLabel": "Set all pages to:",
+      "applyToAll": "Apply to All",
+      "rotateButton": "Rotate PDF",
+      "rotatedCount": "({count} page(s) set)",
+      "successMessage": "Rotation completed successfully! Click the download button to save your file."
+    },
+    "addBlankPage": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file to add blank pages.",
+      "optionsTitle": "Add Blank Pages Options",
+      "positionLabel": "Insert Position",
+      "positionHint": "Enter 0 to insert at the beginning, or {total} to insert at the end.",
+      "countLabel": "Number of Blank Pages",
+      "position": "Position",
+      "pageSize": "Page Size",
+      "addButton": "Add Blank Pages",
+      "successMessage": "Blank pages added successfully! Click the download button to save your file.",
+      "positionStart": "문서 시작 부분",
+      "positionEnd": "문서 끝 부분",
+      "positionAfterEach": "각 페이지 다음",
+      "matchSource": "원본 파일에 맞춤"
+    },
+    "reversePages": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file to reverse page order.",
+      "infoTitle": "Reverse Page Order",
+      "infoDescription": "This will reverse the order of all pages in your PDF. The last page will become the first, and so on.",
+      "reverseButton": "Reverse Pages",
+      "successMessage": "Page order reversed successfully! Click the download button to save your file."
+    },
+    "nUpPdf": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF 파일을 여기에 드래그 앤 드롭하거나 클릭하여 찾아보세요.",
+      "optionsTitle": "N-Up 옵션",
+      "layout": "레이아웃",
+      "pagesPerSheet": "시트당 페이지 수",
+      "pageSize": "출력 페이지 크기",
+      "orientation": "방향",
+      "useMargins": "여백 및 거터 추가",
+      "addBorder": "페이지 주위에 테두리 추가",
+      "borderColor": "테두리 색상",
+      "previewInfo": "{pages}페이지가 시트당 {perSheet}페이지씩 {sheets}장에 배치됩니다.",
+      "layoutDirection": "레이아웃 방향",
+      "layoutHorizontal": "가로 (나란히)",
+      "layoutVertical": "세로 (위아래)",
+      "layoutHorizontalDesc": "페이지가 나란히 배치됩니다 (왼쪽에서 오른쪽)",
+      "layoutVerticalDesc": "페이지가 위에서 아래로 쌓입니다",
+      "customLayout": "사용자 정의...",
+      "columns": "열",
+      "rows": "행",
+      "layoutPreview": "레이아웃 미리보기",
+      "gridLayoutInfo": "격자: {cols} × {rows} (시트당 {perSheet}페이지)",
+      "readingOrder": "읽기 순서",
+      "topToBottom": "↓ 위에서 아래로",
+      "leftToRight": "→ 왼쪽에서 오른쪽으로, 그 다음 ↓ 아래로",
+      "createButton": "N-Up PDF 만들기",
+      "createCustomButton": "{cols}×{rows} PDF 만들기",
+      "gridLabel": "격자 레이아웃",
+      "outputPages": "출력 시트",
+      "pagesLabel": "페이지",
+      "sheetsLabel": "장",
+      "perSheetLabel": "페이지/장",
+      "successMessage": "N-Up PDF가 성공적으로 생성되었습니다! 다운로드 버튼을 클릭하여 파일을 저장하세요."
+    },
+    "gridCombine": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "여러 PDF 파일을 여기에 드래그 앤 드롭하세요.",
+      "filesTitle": "병합할 파일",
+      "reorderHint": "드래그 앤 드롭으로 순서 변경.",
+      "optionsTitle": "레이아웃 옵션",
+      "gridLayout": "격자 레이아웃",
+      "pageSize": "페이지 크기",
+      "orientation": "방향",
+      "spacing": "간격",
+      "useMargins": "여백 추가",
+      "addBorder": "테두리 추가",
+      "borderColor": "테두리 색상",
+      "combineButton": "PDF 병합",
+      "successMessage": "PDF가 성공적으로 병합되었습니다! 다운로드 버튼을 클릭하여 파일을 저장하세요.",
+      "layoutPreview": "레이아웃 미리보기",
+      "columns": "열",
+      "rows": "행",
+      "pageMode": "페이지 모드",
+      "firstPageOnly": "첫 페이지만",
+      "allPages": "모든 페이지",
+      "firstPageOnlyHint": "각 PDF의 첫 페이지만 사용합니다.",
+      "allPagesHint": "각 PDF의 모든 페이지를 격자에 포함합니다.",
+      "fillMode": "채우기 모드",
+      "leaveEmpty": "셀 비워두기",
+      "repeat": "처음부터 반복",
+      "stretchLast": "마지막 페이지 반복",
+      "fillModeHint": "파일 수가 셀 수보다 적을 때 빈 셀을 채우는 방법.",
+      "cells": "셀",
+      "page": "페이지",
+      "pages": "페이지",
+      "previewInfoAllPages": "{fileCount}개의 PDF(총 {totalPages} 페이지)가 {outputPages}장의 {layout} 격자에 배치됩니다.",
+      "previewInfoFirstPage": "{fileCount}개의 PDF가 {outputPages}장의 {layout} 격자에 배치됩니다.",
+      "minFilesError": "병합할 PDF 파일을 최소 2개 이상 추가해 주세요."
+    },
+    "alternateMerge": {
+      "uploadLabel": "Upload PDF Files",
+      "uploadDescription": "Upload two or more PDF files to interleave their pages alternately.",
+      "filesTitle": "Files to Interleave",
+      "reorderHint": "Drag and drop to reorder files. Pages will be interleaved in the order shown (1st page from file 1, 1st page from file 2, 2nd page from file 1, etc.).",
+      "optionsTitle": "Interleave Options",
+      "reverseSecond": "Reverse second document",
+      "reverseSecondHint": "Enable this for back-to-front scanned documents",
+      "howItWorks": "How it works:",
+      "howItWorksDescription": "Pages are interleaved alternately: Page 1 from File 1, Page 1 from File 2, Page 2 from File 1, Page 2 from File 2, and so on. If documents have different page counts, extra pages are appended at the end.",
+      "mergeButton": "Interleave PDFs",
+      "successMessage": "PDFs interleaved successfully! Click the download button to save your file."
+    },
+    "combineSinglePage": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "optionsTitle": "Combine Options",
+      "orientation": "Orientation",
+      "vertical": "Vertical (Top to Bottom)",
+      "horizontal": "Horizontal (Left to Right)",
+      "spacing": "Page Spacing (points)",
+      "backgroundColor": "Background Color",
+      "addSeparator": "Add separator lines between pages",
+      "separatorThickness": "Separator Thickness (points)",
+      "separatorColor": "Separator Color",
+      "previewInfo": "{pages} pages will be combined into 1 continuous {orientation} page.",
+      "combineButton": "Combine Pages",
+      "successMessage": "Pages combined successfully! Click the download button to save your file."
+    },
+    "addAttachments": {
+      "pdfFileTitle": "1. Select PDF File",
+      "pdfUploadLabel": "Upload PDF File",
+      "pdfUploadDescription": "Select the PDF file to add attachments to.",
+      "attachmentsTitle": "2. Select Files to Attach",
+      "attachmentsUploadLabel": "Upload Attachments",
+      "attachmentsUploadDescription": "Select files to embed in the PDF. Any file type is supported.",
+      "optionsTitle": "Attachment Options",
+      "attachmentLevel": "Attachment Level",
+      "documentLevel": "Document Level",
+      "pageLevel": "Page Level",
+      "pageRange": "Page Range",
+      "pageRangeHint": "Specify which pages to attach files to.",
+      "addButton": "Add Attachments",
+      "successMessage": "Attachments added successfully! Click the download button to save your file."
+    },
+    "editAttachments": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Select a PDF file to view and manage its attachments.",
+      "loadingAttachments": "Loading attachments...",
+      "attachmentsTitle": "Attachments",
+      "selectAll": "Select All",
+      "deselectAll": "Deselect All",
+      "removeButton": "Remove Selected",
+      "noAttachments": "No attachments found in this PDF file.",
+      "selectedCount": "{count} attachment(s) selected for removal",
+      "selectAtLeastOne": "Please select at least one attachment to remove.",
+      "attachmentCount": "attachment(s)",
+      "saveButton": "Save Changes",
+      "successMessage": "Attachments removed successfully! Click the download button to save your file."
+    },
+    "comparePdfs": {
+      "file1Label": "First PDF (Original)",
+      "uploadFile1": "Upload First PDF",
+      "file2Label": "Second PDF (Modified)",
+      "uploadFile2": "Upload Second PDF",
+      "uploadDescription": "Drag and drop or click to browse",
+      "compareButton": "Compare PDFs",
+      "resultsTitle": "Comparison Results",
+      "newComparison": "New Comparison",
+      "viewMode": "View Mode:",
+      "sideBySide": "Side by Side",
+      "overlay": "Overlay",
+      "differences": "Differences",
+      "opacity": "Opacity:",
+      "diffView": "Difference View (Red areas show changes)",
+      "pageOverview": "Page Overview",
+      "fullscreen": "Fullscreen",
+      "exitFullscreen": "Exit Fullscreen",
+      "successMessage": "Comparison complete! Use the view modes and page navigation to explore differences."
+    },
+    "pdfToZip": {
+      "uploadLabel": "Upload PDF Files",
+      "uploadDescription": "Drag and drop PDF files to package.",
+      "filesTitle": "Files to Package",
+      "totalSize": "Total size",
+      "optionsTitle": "ZIP Options",
+      "compressionLevel": "Compression Level",
+      "noCompression": "No compression (fastest)",
+      "lowCompression": "Low compression (fast)",
+      "mediumCompression": "Medium compression (balanced)",
+      "highCompression": "High compression (smaller file)",
+      "createButton": "Create ZIP Archive",
+      "successMessage": "Successfully packaged PDF files into a ZIP archive. Click the download button to save your file."
+    },
+    "textToPdf": {
+      "uploadLabel": "Upload Text Files",
+      "uploadDescription": "Drag and drop text files here, or click to browse.",
+      "filesTitle": "Text Files",
+      "preview": "Preview",
+      "optionsTitle": "PDF Options",
+      "pageSize": "Page Size",
+      "fontFamily": "Font",
+      "fontSize": "Font Size",
+      "lineHeight": "Line Spacing",
+      "preserveLineBreaks": "Preserve line breaks",
+      "wrapLines": "Wrap long lines",
+      "convertButton": "Convert to PDF",
+      "successMessage": "Text converted to PDF successfully! Click the download button to save your file."
+    },
+    "txtToPdf": {
+      "uploadLabel": "Upload Text Files",
+      "uploadDescription": "Drag and drop text files here, or click to browse.",
+      "filesTitle": "Text Files",
+      "preview": "Preview",
+      "optionsTitle": "PDF Options",
+      "pageSize": "Page Size",
+      "fontFamily": "Font Family",
+      "fontSize": "Font Size",
+      "lineHeight": "Line Spacing",
+      "preserveLineBreaks": "Preserve line breaks",
+      "wrapLines": "Wrap long lines",
+      "convertButton": "Convert to PDF",
+      "successMessage": "Text converted to PDF successfully! Click the download button to save your file.",
+      "modeUpload": "Upload Files",
+      "modeText": "Enter Text",
+      "enterText": "Enter Text",
+      "textPlaceholder": "Type or paste your text here...",
+      "characters": "characters",
+      "noTextError": "Please enter some text to convert.",
+      "noFilesError": "Please add at least 1 text file.",
+      "custom": "Custom",
+      "width": "Width (pt)",
+      "height": "Height (pt)",
+      "orientation": "Orientation",
+      "portrait": "Portrait",
+      "landscape": "Landscape",
+      "textColor": "Text Color",
+      "single": "Single",
+      "double": "Double",
+      "selectLanguages": "Select Languages",
+      "selectLanguagesPlaceholder": "Select languages...",
+      "searchLanguages": "Search languages...",
+      "languageHint": "Select languages used in your text for proper font support"
+    },
+    "jsonToPdf": {
+      "uploadLabel": "Upload JSON File",
+      "uploadDescription": "Drag and drop a JSON file.",
+      "convertButton": "Convert to PDF",
+      "successMessage": "JSON converted to PDF successfully!"
+    },
+    "pdfToImage": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "변환할 PDF 파일을 드래그 앤 드롭하세요.",
+      "optionsTitle": "변환 옵션",
+      "format": "이미지 형식",
+      "quality": "품질",
+      "dpi": "해상도 (DPI)",
+      "resolution": "해상도",
+      "pageRange": "페이지 범위",
+      "pageRangePlaceholder": "예: 1-3, 5, 7",
+      "pageRangeHint": "모든 페이지를 원하면 비워두세요",
+      "layoutTitle": "페이지 레이아웃",
+      "customLayout": "사용자 정의",
+      "columns": "열",
+      "rows": "행",
+      "skipFirstPage": "첫 페이지/표지 제외",
+      "skipFirstPageHint": "첫 페이지(표지)는 별도 이미지로 렌더링됩니다",
+      "layoutPreview": "레이아웃 미리보기",
+      "pagesPerImage": "페이지/이미지",
+      "layoutHint": "선택한 그리드 레이아웃으로 여러 PDF 페이지를 하나의 이미지로 결합합니다.",
+      "convertButton": "이미지로 변환",
+      "downloadZip": "모두 ZIP으로 다운로드",
+      "previewTitle": "변환된 이미지",
+      "successMessage": "PDF가 성공적으로 이미지로 변환되었습니다!"
+    },
+    "pdfToSvg": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "SVG로 변환할 PDF 파일을 드래그 앤 드롭하세요.",
+      "optionsTitle": "변환 옵션",
+      "resolution": "해상도",
+      "resolutionHint": "해상도가 높을수록 더 크고 상세한 SVG 파일이 생성됩니다.",
+      "pageRange": "페이지 범위",
+      "pageRangePlaceholder": "예: 1-3, 5, 7",
+      "pageRangeHint": "모든 페이지를 원하면 비워두세요",
+      "convertButton": "SVG로 변환",
+      "downloadZip": "모두 ZIP으로 다운로드",
+      "previewTitle": "변환된 SVG",
+      "previewPage": "페이지",
+      "successMessage": "PDF가 SVG로 성공적으로 변환되었습니다! 썸네일을 클릭하여 미리 보거나 개별 파일을 다운로드하세요."
+    },
+    "pdfToGreyscale": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file to convert to greyscale.",
+      "optionsTitle": "Greyscale Options",
+      "method": "Conversion Method",
+      "methodLuminosity": "Luminosity (Recommended)",
+      "methodAverage": "Average",
+      "methodLightness": "Lightness",
+      "quality": "Quality",
+      "qualityLow": "Low (Faster)",
+      "qualityMedium": "Medium (Recommended)",
+      "qualityHigh": "High (Slower)",
+      "pageRange": "Page Range",
+      "pageRangePlaceholder": "e.g., 1-3, 5, 7",
+      "pageRangeHint": "Leave empty for all pages",
+      "convertButton": "Convert to Greyscale",
+      "successMessage": "PDF converted to greyscale successfully!"
+    },
+    "pdfToJson": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "optionsTitle": "Extraction Options",
+      "includeText": "Include Text",
+      "includeMetadata": "Include Metadata",
+      "includePageInfo": "Include Page Info",
+      "includeOutline": "Include Outline",
+      "prettyPrint": "Pretty Print",
+      "pageRange": "Page Range",
+      "pageRangePlaceholder": "e.g., 1-3, 5, 7",
+      "pageRangeHint": "Leave empty for all pages",
+      "previewTitle": "JSON Preview",
+      "convertButton": "Extract to JSON",
+      "successMessage": "PDF extracted to JSON successfully! Click the download button to save your file."
+    },
+    "ocrPdf": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a scanned PDF file here, or click to browse.",
+      "optionsTitle": "OCR Options",
+      "languages": "Languages",
+      "languagesHint": "Select one or more languages for better accuracy",
+      "outputFormat": "Output Format",
+      "formatText": "Text File (.txt)",
+      "formatPdf": "Searchable PDF",
+      "quality": "Quality",
+      "qualityLow": "Low (Faster)",
+      "qualityMedium": "Medium (Recommended)",
+      "qualityHigh": "High (Slower)",
+      "pageRange": "Page Range",
+      "pageRangePlaceholder": "e.g., 1-3, 5, 7",
+      "pageRangeHint": "Leave empty for all pages",
+      "processButton": "Start OCR",
+      "previewTitle": "Extracted Text Preview",
+      "successMessage": "OCR completed successfully! Click the download button to save your file.",
+      "infoTitle": "About OCR",
+      "infoText": "OCR (Optical Character Recognition) extracts text from scanned documents and images. For best results, use high-quality scans and select the correct language(s)."
+    },
+    "linearizePdf": {
+      "uploadLabel": "Upload PDF Files",
+      "uploadDescription": "Drag and drop PDF files here, or click to browse. You can select multiple files.",
+      "selectedFiles": "Selected Files",
+      "optionsTitle": "Linearization Options",
+      "info": "Linearization optimizes PDFs for fast web viewing. The first page will display before the entire file is downloaded, improving user experience for web-hosted documents.",
+      "useObjectStreams": "Use object streams for better compression",
+      "useObjectStreamsDesc": "Recommended for smaller file sizes. Disable for maximum compatibility with older PDF readers.",
+      "linearizeButton": "Linearize PDF",
+      "successMessage": "PDF linearized successfully!",
+      "filesProcessed": "Files:",
+      "pages": "Pages:",
+      "originalSize": "Original:",
+      "optimizedSize": "Optimized:"
+    },
+    "pageDimensions": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "displayOptions": "Display Options",
+      "unitLabel": "Measurement Unit",
+      "unitPoints": "Points",
+      "unitInches": "Inches",
+      "unitMm": "Millimeters",
+      "analyzeButton": "Analyze Dimensions",
+      "summary": "Summary",
+      "totalPages": "Total Pages",
+      "uniqueSizes": "Unique Sizes",
+      "uniformSize": "Uniform Size",
+      "yes": "Yes",
+      "no": "No",
+      "sizeDistribution": "Size Distribution",
+      "pageDetails": "Page Details",
+      "page": "Page",
+      "width": "Width",
+      "height": "Height",
+      "orientation": "Orientation",
+      "standardSize": "Standard Size",
+      "showingFirst50": "Showing first 50 pages. Download JSON for complete data.",
+      "successMessage": "Dimensions analyzed successfully!"
+    },
+    "removeRestrictions": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a restricted PDF file.",
+      "optionsTitle": "Options",
+      "ownerPasswordLabel": "Owner Password (optional)",
+      "ownerPasswordPlaceholder": "Enter owner password if known",
+      "ownerPasswordHint": "If the PDF has an owner password, enter it here for better results.",
+      "info": "This tool removes owner password restrictions that prevent printing, copying, and editing. It works on PDFs with permission restrictions but cannot remove user passwords required to open the document.",
+      "warning": "Only use this tool on PDFs you own or have permission to modify. Removing restrictions from copyrighted material without authorization may violate copyright laws.",
+      "removeButton": "Remove Restrictions",
+      "successMessage": "Restrictions removed successfully!",
+      "originalSize": "Original:",
+      "newSize": "New Size:",
+      "successHint": "The PDF can now be printed, copied, and edited without restrictions.",
+      "invalidPassword": "The password you entered is incorrect. Please check and try again."
+    },
+    "sanitizePdf": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file to sanitize.",
+      "optionsTitle": "Sanitization Options",
+      "info": "Sanitization removes potentially harmful content from PDFs, making them safer to open and share.",
+      "removeJavaScript": "Remove JavaScript",
+      "removeAttachments": "Remove Attachments",
+      "removeLinks": "Remove External Links",
+      "removeFormActions": "Remove Form Actions",
+      "removeMetadata": "Remove Metadata",
+      "removeAnnotations": "Remove Annotations",
+      "sanitizeButton": "Sanitize PDF",
+      "successMessage": "PDF sanitized successfully!",
+      "removedItems": "Removed:"
+    },
+    "flattenPdf": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file to flatten.",
+      "flattenButton": "Flatten PDF",
+      "successMessage": "PDF flattened successfully!",
+      "optionsTitle": "평탄화 옵션",
+      "flattenForms": "양식 필드 평탄화",
+      "flattenAnnotations": "주석 평탄화"
+    },
+    "removeMetadata": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "optionsTitle": "Select Metadata to Remove",
+      "selectAll": "Select All",
+      "deselectAll": "Deselect All",
+      "info": "Removing metadata helps protect your privacy by stripping identifying information from the PDF.",
+      "title": "Title",
+      "author": "Author",
+      "subject": "Subject",
+      "keywords": "Keywords",
+      "creator": "Creator",
+      "producer": "Producer",
+      "creationDate": "Creation Date",
+      "modificationDate": "Modification Date",
+      "removeButton": "Remove Metadata",
+      "successMessage": "Metadata removed successfully!",
+      "removedFields": "Removed:"
+    },
+    "changePermissions": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "optionsTitle": "Document Permissions",
+      "passwordTitle": "Password Settings",
+      "privacyNotice": "🔒 Your passwords are processed locally and never sent to any server.",
+      "currentPasswordLabel": "Current Password (if PDF is encrypted)",
+      "currentPasswordPlaceholder": "Enter current password",
+      "currentPasswordHint": "Required if the PDF is already password-protected.",
+      "newUserPasswordLabel": "New User Password (to open document)",
+      "newUserPasswordPlaceholder": "Enter user password",
+      "newUserPasswordHint": "Users will need this password to open the PDF.",
+      "newOwnerPasswordLabel": "New Owner Password (to change permissions)",
+      "newOwnerPasswordPlaceholder": "Enter owner password",
+      "newOwnerPasswordHint": "Required to enforce permission restrictions.",
+      "allowAll": "Allow All",
+      "restrictAll": "Restrict All",
+      "info": "Note: Permission enforcement requires PDF encryption. Set an owner password below to enforce restrictions.",
+      "allowPrinting": "Allow Printing",
+      "allowPrintingDesc": "Users can print the document",
+      "allowHighQualityPrinting": "Allow High-Quality Printing",
+      "allowHighQualityPrintingDesc": "Users can print at high resolution",
+      "allowModifying": "Allow Modifying",
+      "allowModifyingDesc": "Users can edit the document",
+      "allowCopying": "Allow Copying",
+      "allowCopyingDesc": "Users can copy text and images",
+      "allowAnnotating": "Allow Annotating",
+      "allowAnnotatingDesc": "Users can add comments and annotations",
+      "allowFillingForms": "Allow Filling Forms",
+      "allowFillingFormsDesc": "Users can fill in form fields",
+      "allowAccessibility": "Allow Accessibility",
+      "allowAccessibilityDesc": "Screen readers can access content",
+      "allowAssembly": "Allow Assembly",
+      "allowAssemblyDesc": "Users can insert, delete, or rotate pages",
+      "applyButton": "Apply Permissions",
+      "successMessage": "Permissions updated successfully!",
+      "successHint": "For full permission enforcement, encrypt the PDF with an owner password.",
+      "invalidPassword": "The current password you entered is incorrect. Please check and try again.",
+      "passwordRequired": "This PDF is password-protected. Please enter the current password to proceed."
+    },
+    "fixPageSize": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here, or click to browse.",
+      "optionsTitle": "Page Size Options",
+      "targetSize": "Target Page Size",
+      "custom": "Custom",
+      "width": "Width (points)",
+      "height": "Height (points)",
+      "scaleMode": "Content Scaling",
+      "scaleFit": "Fit",
+      "scaleFill": "Fill",
+      "scaleStretch": "Stretch",
+      "scaleCenter": "Center",
+      "scaleFitDesc": "Scale content to fit within page, maintaining aspect ratio",
+      "scaleFillDesc": "Scale content to fill page, may crop edges",
+      "scaleStretchDesc": "Stretch content to fill page exactly",
+      "scaleCenterDesc": "Center content without scaling",
+      "orientation": "Page Orientation",
+      "orientAuto": "Auto",
+      "orientPortrait": "Portrait",
+      "orientLandscape": "Landscape",
+      "maintainAspectRatio": "Maintain aspect ratio",
+      "applyButton": "Fix Page Sizes",
+      "successMessage": "Page sizes fixed successfully!"
+    },
+    "bookmark": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file to edit bookmarks.",
+      "pdfPreview": "PDF Preview",
+      "bookmarksTitle": "Bookmarks",
+      "addBookmark": "Add Bookmark",
+      "noBookmarks": "No bookmarks yet. Click 'Add Bookmark' to create one.",
+      "hint": "Click a bookmark to preview its page. Use +/✎/× to add child, edit, or delete.",
+      "saveButton": "Save Bookmarks",
+      "successMessage": "Bookmarks saved successfully!"
+    },
+    "pageNumbers": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF 파일을 드래그 앤 드롭하세요.",
+      "optionsTitle": "페이지 번호 옵션",
+      "positionTitle": "위치",
+      "formatTitle": "형식",
+      "formatNumber": "숫자 (1, 2, 3)",
+      "formatRoman": "로마숫자 (I, II, III)",
+      "formatPageOfTotal": "X / Y 페이지",
+      "styleTitle": "스타일",
+      "style": "스타일",
+      "startNumber": "시작 번호",
+      "customFormat": "사용자 정의 형식",
+      "customFormatHint": "{page}와 {total}을 자리 표시자로 사용",
+      "prefix": "접두사",
+      "suffix": "접미사",
+      "fontSize": "글꼴 크기",
+      "margin": "여백",
+      "color": "색상",
+      "skipFirstPage": "첫 페이지 건너뛰기 (표지)",
+      "preview": "미리보기",
+      "pageOf": "{current} / {total} 페이지",
+      "firstPageSkipped": "첫 페이지는 건너뜁니다",
+      "previewText": "미리보기: \"{text}\"",
+      "addButton": "페이지 번호 추가",
+      "successMessage": "페이지 번호가 성공적으로 추가되었습니다!",
+      "zoomIn": "확대",
+      "zoomOut": "축소",
+      "zoomReset": "확대/축소 초기화",
+      "oddEvenTitle": "홀수/짝수 페이지 설정",
+      "pageMode": "페이지 모드",
+      "modeAll": "모든 페이지",
+      "modeOddOnly": "홀수 페이지만 (1, 3, 5...)",
+      "modeEvenOnly": "짝수 페이지만 (2, 4, 6...)",
+      "modeDifferent": "홀수/짝수 다른 위치",
+      "oddPosition": "홀수 페이지 위치",
+      "evenPosition": "짝수 페이지 위치",
+      "oddPositionHint": "1, 3, 5... 페이지",
+      "evenPositionHint": "2, 4, 6... 페이지",
+      "differentModeHint": "이 모드는 각 페이지의 바깥쪽 가장자리에 페이지 번호를 배치하려는 양면 인쇄에 유용합니다.",
+      "posBottomLeft": "왼쪽 하단",
+      "posBottomCenter": "하단 중앙",
+      "posBottomRight": "오른쪽 하단",
+      "posTopLeft": "왼쪽 상단",
+      "posTopCenter": "상단 중앙",
+      "posTopRight": "오른쪽 상단"
+    },
+    "watermark": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file.",
+      "optionsTitle": "Watermark Options",
+      "textWatermark": "Text Watermark",
+      "imageWatermark": "Image Watermark",
+      "watermarkText": "Watermark Text",
+      "watermarkImage": "Watermark Image (PNG/JPG)",
+      "fontSize": "Font Size",
+      "color": "Color",
+      "opacity": "Opacity",
+      "angle": "Angle",
+      "enterText": "Please enter text for the watermark.",
+      "selectImage": "Please select an image file for the watermark.",
+      "unsupportedImage": "Unsupported image format. Please use PNG or JPG.",
+      "failed": "Failed to add watermark.",
+      "addButton": "Add Watermark",
+      "successMessage": "Watermark added successfully!",
+      "repeatTitle": "워터마크 반복",
+      "repeatEnable": "전체 페이지에 워터마크 타일 배치",
+      "repeatSpacingX": "가로 간격",
+      "repeatSpacingY": "세로 간격",
+      "type": "유형",
+      "position": "위치",
+      "posCenter": "중앙",
+      "posDiagonal": "대각선",
+      "posTopLeft": "왼쪽 상단",
+      "posTopRight": "오른쪽 상단",
+      "posBottomLeft": "왼쪽 하단",
+      "posBottomRight": "오른쪽 하단",
+      "textPlaceholder": "예: 기밀(CONFIDENTIAL)"
+    },
+    "headerFooter": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here.",
+      "headerTitle": "Header",
+      "footerTitle": "Footer",
+      "styleTitle": "Style",
+      "preview": "Preview",
+      "previewHint": "Enter header or footer text to see preview",
+      "addButton": "Add Header & Footer",
+      "successMessage": "Header & footer added successfully!",
+      "headerText": "머리글 텍스트",
+      "headerTextPlaceholder": "머리글 입력...",
+      "footerText": "바닥글 텍스트",
+      "footerTextPlaceholder": "바닥글 입력...",
+      "fontSize": "글꼴 크기",
+      "fontColor": "글꼴 색상"
+    },
+    "invertColors": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file.",
+      "invertButton": "Invert Colors",
+      "successMessage": "Colors inverted successfully!"
+    },
+    "backgroundColor": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file.",
+      "colorLabel": "Background Color",
+      "applyButton": "Apply Background",
+      "successMessage": "Background color applied successfully!"
+    },
+    "textColor": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file.",
+      "colorLabel": "Text Color",
+      "modeLabel": "Text Type",
+      "modeDark": "Dark text (light background)",
+      "modeLight": "Light text (dark background)",
+      "thresholdLabel": "Brightness Threshold",
+      "thresholdHint": "Adjust to control which pixels are affected",
+      "applyButton": "Apply Text Color",
+      "successMessage": "Text color applied successfully!"
+    },
+    "stamps": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file here.",
+      "instructionsTitle": "How to Add Stamps",
+      "instruction1": "Click the Stamp tool (image icon) in the toolbar above",
+      "instruction2": "Click \"Add image\" to upload your stamp image",
+      "instruction3": "Click on the PDF where you want to place the stamp",
+      "instruction4": "Drag to resize or reposition the stamp",
+      "instruction5": "Click \"Save Stamped PDF\" below when done",
+      "saveButton": "Save Stamped PDF",
+      "viewerNotReady": "Viewer not ready. Please wait for the PDF to load.",
+      "saveFailed": "Failed to save stamped PDF. Please try again.",
+      "successMessage": "Stamps added successfully!"
+    },
+    "removeAnnotations": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file.",
+      "optionsTitle": "Removal Options",
+      "removeButton": "Remove Annotations",
+      "successMessage": "Annotations removed successfully!",
+      "removeComments": "댓글 제거",
+      "removeHighlights": "하이라이트 제거",
+      "removeLinks": "링크 제거"
+    },
+    "formFiller": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF form.",
+      "saveButton": "Save Form",
+      "successMessage": "Form saved successfully!"
+    },
+    "formCreator": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF 파일을 여기에 드래그 앤 드롭하세요.",
+      "toolbarTitle": "도구 모음",
+      "selectTool": "선택",
+      "textFieldTool": "텍스트 필드",
+      "checkboxTool": "체크박스",
+      "dropdownTool": "드롭다운",
+      "radioTool": "라디오 버튼",
+      "deleteTool": "삭제",
+      "pageNavigation": "페이지 {current} / {total}",
+      "selectHint": "필드를 클릭하여 선택, 드래그하여 이동, 모서리로 크기 조절",
+      "addFieldHint": "PDF를 클릭하여 {type} 필드 추가",
+      "fieldProperties": "필드 속성",
+      "fieldName": "이름",
+      "fieldType": "유형",
+      "fieldX": "X",
+      "fieldY": "Y",
+      "fieldWidth": "너비",
+      "fieldHeight": "높이",
+      "multiline": "여러 줄",
+      "options": "옵션 (줄당 하나)",
+      "deleteField": "필드 삭제",
+      "noFieldSelected": "필드를 선택하여 속성을 편집하거나 도구 모음을 사용하여 새 필드를 추가하세요.",
+      "allFields": "모든 필드 ({count})",
+      "noFieldsYet": "아직 필드가 없습니다. PDF를 클릭하여 양식 필드를 추가하세요.",
+      "page": "페이지 {number}",
+      "createButton": "양식 만들기",
+      "successMessage": "양식이 성공적으로 생성되었습니다!",
+      "createBlankPdfTitle": "빈 PDF 만들기",
+      "pageSize": "페이지 크기",
+      "pageCount": "페이지 수",
+      "blankPdfNote": "양식 필드를 추가할 빈 PDF가 생성됩니다.",
+      "addBlankPage": "빈 페이지 추가",
+      "addPageBefore": "현재 페이지 앞",
+      "addPageAfter": "현재 페이지 뒤",
+      "addPageEnd": "맨 끝에",
+      "templateHint": "또는 템플릿을 선택하여 빠르게 시작하세요",
+      "templates": "템플릿",
+      "selectTemplate": "선택...",
+      "template": {
+        "contact": "연락처 양식",
+        "registration": "등록",
+        "feedback": "피드백",
+        "order": "주문 양식",
+        "consent": "동의서",
+        "invoice": "청구서"
+      },
+      "fieldLabel": "레이블",
+      "fieldLabelPlaceholder": "레이블 텍스트 입력...",
+      "labelPosition": "위치",
+      "labelAbove": "위",
+      "labelLeft": "왼쪽",
+      "formOptions": "양식 옵션",
+      "flattenForm": "양식 평탄화",
+      "flattenFormHint": "양식 필드를 편집할 수 없게 만듦 (정적 콘텐츠로 변환)",
+      "projectManagement": "프로젝트 관리",
+      "saveProject": "프로젝트 저장",
+      "savedProjects": "저장된 프로젝트",
+      "loadProject": "불러오기",
+      "deleteProject": "삭제",
+      "saveProjectTitle": "프로젝트 저장",
+      "projectName": "프로젝트 이름",
+      "projectNamePlaceholder": "프로젝트 이름 입력...",
+      "saveInfo": "{fields}개의 양식 필드가 저장됩니다.",
+      "saveNote": "프로젝트는 브라우저 내 로컬에 저장됩니다.",
+      "undo": "되돌리기 (Ctrl+Z)",
+      "redo": "다시 실행 (Ctrl+Y)",
+      "duplicate": "복제 (Ctrl+D)",
+      "align": "정렬",
+      "alignLeft": "왼쪽 정렬",
+      "alignCenter": "가운데 정렬",
+      "alignRight": "오른쪽 정렬",
+      "alignTop": "위쪽 정렬",
+      "alignMiddle": "수직 가운데 정렬",
+      "alignBottom": "아래쪽 정렬",
+      "defaultValue": "기본값",
+      "defaultValuePlaceholder": "기본 텍스트 입력...",
+      "defaultChecked": "기본적으로 선택됨",
+      "defaultSelection": "기본 선택 항목",
+      "noDefault": "-- 없음 --",
+      "required": "필수 필드",
+      "shortcutsHint": "단축키: Ctrl+Z (되돌리기) | Ctrl+Y (다시 실행) | Ctrl+D (복제) | Ctrl+A (전체 선택) | Delete (삭제)",
+      "buttonTool": "버튼",
+      "signatureTool": "서명",
+      "dateTool": "날짜",
+      "listboxTool": "리스트 박스",
+      "buttonLabel": "버튼 라벨",
+      "buttonLabelPlaceholder": "제출",
+      "signatureLabel": "서명 라벨",
+      "signatureLabelPlaceholder": "여기에 서명",
+      "dateFormat": "날짜 형식",
+      "defaultDate": "기본 날짜",
+      "multiSelect": "다중 선택 허용",
+      "basicTools": "기본",
+      "advancedTools": "추가",
+      "properties": "속성",
+      "fieldsTab": "필드",
+      "optionsTab": "옵션",
+      "addField": "추가",
+      "clickToAdd": "PDF를 클릭하여 필드 추가",
+      "pages": "페이지",
+      "processingButton": "처리 중...",
+      "cancelButton": "취소",
+      "saveButton": "저장",
+      "orCreateBlank": "또는",
+      "createBlankPdf": "빈 PDF 생성"
+    },
+    "removeBlankPages": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file.",
+      "optionsTitle": "Detection Options",
+      "removeButton": "Remove Blank Pages",
+      "successMessage": "Blank pages removed successfully!"
+    },
+    "tableOfContents": {
+      "uploadLabel": "Upload PDF File",
+      "uploadDescription": "Drag and drop a PDF file.",
+      "optionsTitle": "TOC Options",
+      "generateButton": "Generate TOC",
+      "successMessage": "Table of contents generated successfully!",
+      "options": "TOC Options",
+      "tocTitle": "TOC Title",
+      "fontSize": "Font Size",
+      "fontFamily": "Font Family",
+      "addBookmark": "Add TOC entry to bookmarks",
+      "bookmarkRequired": "This tool generates a clickable table of contents from existing PDF bookmarks. Please ensure your PDF has bookmarks before using this tool. You can add bookmarks using the Edit Bookmarks tool.",
+      "generate": "Generate Table of Contents",
+      "success": "Table of contents generated successfully!",
+      "tocTitlePlaceholder": "목차 제목 입력..."
+    },
+    "pdfToDocx": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "여기에 PDF 파일을 드래그 앤 드롭하거나 클릭하여 찾아보세요.",
+      "convertButton": "DOCX로 변환",
+      "successMessage": "PDF가 성공적으로 DOCX로 변환되었습니다! 다운로드 버튼을 클릭하여 파일을 저장하세요."
+    },
+    "pdfToExcel": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "여기에 PDF 파일을 드래그 앤 드롭하거나 클릭하여 찾아보세요.",
+      "extractNote": "각 페이지의 표가 Excel 파일의 별도 시트로 추출됩니다.",
+      "convertButton": "Excel로 변환",
+      "successTitle": "변환 성공!",
+      "successMessage": "PDF 표가 Excel로 추출되었습니다."
+    },
+    "pdfToPptx": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "여기에 PDF 파일을 드래그 앤 드롭하거나 클릭하여 찾아보세요.",
+      "optionsTitle": "변환 옵션",
+      "dpiLabel": "이미지 품질 (DPI)",
+      "dpiHint": "DPI가 높을수록 슬라이드 품질은 좋아지지만 파일 크기가 커집니다.",
+      "lowSet": "낮음 (72 DPI - 파일 최소)",
+      "mediumSet": "중간 (150 DPI - 표준)",
+      "highSet": "높음 (200 DPI - 고화질)",
+      "veryHighSet": "최고 (300 DPI - 인쇄 품질)",
+      "convertButton": "PowerPoint로 변환",
+      "successTitle": "변환 성공!",
+      "successMessage": "PDF가 PowerPoint 프레젠테이션으로 변환되었습니다."
+    },
+    "wordToPdf": {
+      "uploadLabel": "Word 문서 업로드",
+      "uploadDescription": "Word 문서(.docx)를 여기로 드래그하거나 클릭하여 선택하세요.",
+      "convertButton": "PDF로 변환",
+      "successMessage": "Word 문서가 PDF로 성공적으로 변환되었습니다!"
+    },
+    "psdToPdf": {
+      "uploadLabel": "PSD 파일 업로드",
+      "uploadDescription": "PSD(Photoshop) 파일을 여기로 드래그 앤 드롭하거나 클릭하여 찾아보세요.",
+      "convertButton": "PDF로 변환",
+      "successMessage": "PSD가 PDF로 성공적으로 변환되었습니다! 파일을 저장하려면 다운로드 버튼을 클릭하세요."
+    },
+    "excelToPdf": {
+      "uploadLabel": "Excel 파일 업로드",
+      "uploadDescription": "Excel 파일(.xlsx)을 여기로 드래그하거나 클릭하여 선택하세요.",
+      "convertButton": "PDF로 변환",
+      "successMessage": "Excel 파일이 PDF로 성공적으로 변환되었습니다!"
+    },
+    "pptxToPdf": {
+      "uploadLabel": "PowerPoint 파일 업로드",
+      "uploadDescription": "PowerPoint 파일(.pptx)을 여기로 드래그하거나 클릭하여 선택하세요.",
+      "convertButton": "PDF로 변환",
+      "successMessage": "PowerPoint 파일이 PDF로 성공적으로 변환되었습니다!"
+    },
+    "xpsToPdf": {
+      "uploadLabel": "XPS 파일 업로드",
+      "uploadDescription": "XPS 파일을 여기로 드래그하거나 클릭하여 선택하세요.",
+      "convertButton": "PDF로 변환",
+      "successMessage": "XPS 파일이 PDF로 성공적으로 변환되었습니다!"
+    },
+    "rtfToPdf": {
+      "uploadLabel": "RTF 파일 업로드",
+      "uploadDescription": "RTF 파일을 여기로 드래그하거나 클릭하여 선택하세요.",
+      "convertButton": "PDF로 변환",
+      "successMessage": "RTF 파일이 PDF로 성공적으로 변환되었습니다!"
+    },
+    "epubToPdf": {
+      "uploadLabel": "EPUB 파일 업로드",
+      "uploadDescription": "EPUB 전자책 파일을 여기로 드래그하거나 클릭하여 선택하세요.",
+      "convertButton": "PDF로 변환",
+      "successMessage": "EPUB 파일이 PDF로 성공적으로 변환되었습니다!"
+    },
+    "mobiToPdf": {
+      "uploadLabel": "MOBI 파일 업로드",
+      "uploadDescription": "MOBI/AZW 전자책 파일을 여기로 드래그하거나 클릭하여 선택하세요.",
+      "convertButton": "PDF로 변환",
+      "successMessage": "MOBI 파일이 PDF로 성공적으로 변환되었습니다!"
+    },
+    "fb2ToPdf": {
+      "uploadLabel": "FB2 파일 업로드",
+      "uploadDescription": "FB2 전자책 파일을 여기로 드래그하거나 클릭하여 선택하세요. 여러 파일 지원.",
+      "convertButton": "PDF로 변환",
+      "successMessage": "FB2 파일이 PDF로 성공적으로 변환되었습니다!"
+    },
+    "djvuToPdf": {
+      "uploadLabel": "DJVU 파일 업로드",
+      "uploadDescription": "DJVU 파일을 여기로 드래그하거나 클릭하세요.",
+      "optionsTitle": "변환 옵션",
+      "dpiLabel": "출력 DPI",
+      "dpiHint": "높은 DPI = 더 큰 파일, 더 좋은 품질",
+      "qualityLabel": "이미지 품질",
+      "qualityHint": "페이지의 JPEG 압축 품질",
+      "convertButton": "PDF로 변환",
+      "successTitle": "변환 성공!",
+      "successMessage": "DJVU 파일이 PDF로 성공적으로 변환되었습니다!"
+    },
+    "deskewPdf": {
+      "uploadLabel": "스캔된 PDF 파일 업로드",
+      "uploadDescription": "여기에 PDF 파일을 드래그 앤 드롭하세요. 한 번에 최대 10개의 파일을 처리할 수 있습니다.",
+      "filesTitle": "기울기 보정할 파일",
+      "optionsTitle": "기울기 보정 옵션",
+      "thresholdLabel": "감지 임계값",
+      "thresholdDesc": "값이 높을수록 더 미세한 기울기 각도를 감지합니다. 기본값: 10",
+      "dpiLabel": "분석 DPI",
+      "dpiDesc": "DPI가 높을수록 더 정확한 감지가 가능하지만 시간이 더 오래 걸립니다.",
+      "processButton": "PDF 기울기 보정",
+      "downloadAllZip": "모두 ZIP으로 다운로드",
+      "successMessage": "PDF 파일의 기울기 보정이 성공적으로 완료되었습니다!"
+    },
+    "pdfBooklet": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "소책자 레이아웃을 만들려면 PDF 파일을 드래그 앤 드롭하세요.",
+      "optionsTitle": "소책자 옵션",
+      "gridModeLabel": "그리드 모드",
+      "gridModeDesc": "1x2가 소책자의 표준입니다. 종이를 절약하려면 더 큰 그리드를 사용하세요.",
+      "paperSizeLabel": "용지 크기",
+      "orientationLabel": "방향",
+      "rotationLabel": "페이지 회전",
+      "paddingLabel": "여백",
+      "previewLabel": "레이아웃 미리보기",
+      "previewDesc": "이 미리보기는 각 시트에 페이지가 어떻게 배치되는지 보여줍니다.",
+      "createButton": "소책자 만들기",
+      "successMessage": "소책자가 성공적으로 생성되었습니다! 저장하려면 다운로드를 클릭하세요."
+    },
+    "rasterizePdf": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF 파일을 드래그 앤 드롭하여 이미지 또는 새 PDF로 래스터화하세요.",
+      "optionsTitle": "출력 옵션",
+      "dpiLabel": "해상도 (DPI)",
+      "formatLabel": "출력 형식",
+      "qualityLabel": "품질",
+      "pageRangeLabel": "페이지 범위 (선택 사항)",
+      "pageRangeDesc": "모든 페이지를 변환하려면 비워 두세요.",
+      "bgColorLabel": "배경색",
+      "convertButton": "래스터화",
+      "successMessage": "래스터화 완료! 파일을 저장하려면 다운로드를 클릭하세요."
+    },
+    "markdownToPdf": {
+      "uploadLabel": "Markdown 파일 업로드",
+      "uploadDescription": ".md 또는 .markdown 파일을 드래그 앤 드롭하여 PDF로 변환하세요.",
+      "manualInput": "Markdown 작성",
+      "uploadFile": "파일 업로드",
+      "editorLabel": "Markdown 에디터",
+      "previewLabel": "미리보기",
+      "showPreview": "미리보기 표시",
+      "hidePreview": "미리보기 숨기기",
+      "optionsTitle": "변환 옵션",
+      "themeLabel": "테마",
+      "pageSizeLabel": "페이지 크기",
+      "gfmLabel": "GitHub Flavored Markdown 활성화 (표, 작업 목록 등)",
+      "syntaxHighlightLabel": "코드 블록에 대한 구문 강조 활성화",
+      "convertButton": "PDF로 변환",
+      "successMessage": "PDF가 성공적으로 생성되었습니다! 저장하려면 다운로드를 클릭하세요."
+    },
+    "emailToPdf": {
+      "uploadLabel": "이메일 파일 업로드",
+      "uploadDescription": "이메일 파일(.eml)을 드래그 앤 드롭하여 PDF로 변환하세요.",
+      "optionsTitle": "변환 옵션",
+      "pageSizeLabel": "페이지 크기",
+      "includeCcBccLabel": "CC/BCC 필드 포함",
+      "includeAttachmentsLabel": "첨부 파일 목록 포함",
+      "timezoneLabel": "시간대",
+      "convertButton": "PDF로 변환",
+      "successMessage": "이메일이 성공적으로 변환되었습니다!"
+    },
+    "cbzToPdf": {
+      "uploadLabel": "CBZ 파일 업로드",
+      "uploadDescription": "만화책 아카이브(.cbz)를 드래그 앤 드롭하여 PDF로 변환하세요.",
+      "optionsTitle": "변환 옵션",
+      "pageSizeLabel": "페이지 크기",
+      "qualityLabel": "이미지 품질",
+      "preserveAspectLabel": "가로세로 비율 유지",
+      "convertButton": "PDF로 변환",
+      "successMessage": "만화책이 성공적으로 변환되었습니다!"
+    },
+    "pdfToPdfa": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF 파일을 드래그 앤 드롭하여 PDF/A 형식으로 변환하세요.",
+      "filesTitle": "변환할 파일",
+      "optionsTitle": "PDF/A 옵션",
+      "levelLabel": "PDF/A 레벨",
+      "embedFontsLabel": "모든 글꼴 포함",
+      "flattenTransparencyLabel": "투명도 병합 (PDF/A-1b에 필요)",
+      "convertButton": "PDF/A로 변환",
+      "downloadAllZip": "모두 ZIP으로 다운로드",
+      "successMessage": "파일을 성공적으로 PDF/A로 변환했습니다!"
+    },
+    "fontToOutline": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF 파일을 드래그 앤 드롭하여 글꼴을 윤곽선으로 변환하세요.",
+      "filesTitle": "파일",
+      "optionsTitle": "옵션",
+      "dpiLabel": "래스터화 DPI",
+      "convertButton": "글꼴을 윤곽선으로 변환",
+      "downloadAllZip": "모두 ZIP으로 다운로드",
+      "successMessage": "파일이 성공적으로 변환되었습니다!"
+    },
+    "extractTables": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "표를 추출할 PDF 파일을 드래그 앤 드롭하세요.",
+      "optionsTitle": "추출 옵션",
+      "formatLabel": "출력 형식",
+      "pageRangeLabel": "페이지 범위 (선택 사항)",
+      "minColumnsLabel": "최소 열 수",
+      "minRowsLabel": "최소 행 수",
+      "includePageNumbersLabel": "출력에 페이지 번호 포함",
+      "extractButton": "표 추출",
+      "successMessage": "표가 성공적으로 추출되었습니다! 저장하려면 다운로드를 클릭하세요."
+    },
+    "ocgManager": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF를 드래그 앤 드롭하여 레이어(OCG)를 관리하세요.",
+      "layersTitle": "PDF 레이어",
+      "noLayers": "이 PDF에는 레이어(OCG)가 없습니다.",
+      "addLayerLabel": "새 레이어 추가",
+      "successMessage": "레이어 변경 사항이 성공적으로 저장되었습니다!"
+    },
+    "pdfReader": {
+      "uploadLabel": "PDF 파일 열기",
+      "uploadDescription": "PDF 파일을 열어서 읽고 봅니다."
+    },
+    "pdfToMarkdown": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "PDF 파일을 여기로 드래그하거나 클릭하여 브라우징하세요.",
+      "optionsTitle": "변환 옵션",
+      "pageRange": "페이지 범위",
+      "pageRangePlaceholder": "예: 1-3, 5, 7",
+      "pageRangeHint": "비워두면 모든 페이지 변환",
+      "includePageNumbers": "페이지 번호를 헤더로 포함",
+      "preserveLineBreaks": "줄 바꿈 유지",
+      "convertButton": "Markdown으로 변환",
+      "previewTab": "미리보기",
+      "sourceTab": "Markdown 소스",
+      "successMessage": "PDF가 성공적으로 Markdown으로 변환되었습니다! 다운로드 버튼을 클릭해 파일을 저장하세요.",
+      "failed": "PDF를 Markdown으로 변환하는 데 실패했습니다."
+    },
+    "findAndRedact": {
+      "uploadLabel": "PDF 파일 업로드",
+      "uploadDescription": "텍스트를 검색하고 수정하려면 PDF 파일을 드래그 앤 드롭하세요.",
+      "searchTitle": "텍스트 검색",
+      "searchTermLabel": "검색어",
+      "searchTermPlaceholder": "검색할 텍스트 입력 (예: 계좌 번호, 이름)...",
+      "searchInputPlaceholder": "검색어를 입력하세요 (쉼표로 구분)...",
+      "searchInputHelp": "팁: 여러 검색어는 쉼표(,)로 구분하세요",
+      "multipleTermsPlaceholder": "검색어 입력 (한 줄에 하나 또는 쉼표로 구분)...\n예:\n홍길동\naccount123\n555-1234",
+      "termsCount": "{count}개 검색어",
+      "searchButton": "검색",
+      "searching": "검색 중...",
+      "caseSensitive": "대소문자 구분",
+      "wholeWord": "전체 단어만",
+      "useRegex": "정규 표현식 사용",
+      "enterSearchTerm": "적어도 하나의 검색어를 입력하세요.",
+      "noMatchesFound": "검색어에 대한 일치 항목을 찾을 수 없습니다.",
+      "searchFailed": "PDF 검색 실패.",
+      "matchesFound": "{count}개 일치 항목 발견",
+      "filterByPage": "페이지별 필터",
+      "allPages": "모든 페이지",
+      "pageNumber": "{page} 페이지",
+      "pageInfo": "{page} 페이지",
+      "selectedCount": "{total}개 중 {selected}개 선택됨",
+      "selectMatchesToRedact": "수정할 일치 항목을 하나 이상 선택하세요.",
+      "redactionOptions": "수정 옵션",
+      "redactionColor": "수정 색상",
+      "replacementText": "대체 텍스트 (선택 사항)",
+      "replacementTextPlaceholder": "예: [수정됨]",
+      "addBorder": "수정된 영역 주위에 테두리 추가",
+      "warningTitle": "경고",
+      "warningText": "수정은 영구적입니다. 적용된 후에는 원본 콘텐츠를 복구할 수 없습니다.",
+      "redactButton": "선택된 {count}개 수정",
+      "redactFailed": "수정 적용 실패.",
+      "successMessage": "선택한 텍스트가 성공적으로 수정되었습니다! 저장을 위해 다운로드를 클릭하세요.",
+      "previewTitle": "미리보기",
+      "pagesWithMatches": "일치하는 페이지:",
+      "selectedMatch": "선택됨",
+      "unselectedMatch": "선택되지 않음"
+    }
+  },
+  "faqPage": {
+    "title": "자주 묻는 질문",
+    "subtitle": "{brand}에 대해 가장 자주 묻는 질문과 답변을 확인하세요",
+    "searchPlaceholder": "질문 검색...",
+    "noResults": "검색 결과가 없습니다.",
+    "expandAll": "모두 펼치기",
+    "collapseAll": "모두 접기",
+    "categories": {
+      "all": "전체",
+      "general": "일반",
+      "privacy": "개인정보 및 보안",
+      "features": "기능",
+      "technical": "기술",
+      "languages": "언어"
+    },
+    "sections": {
+      "general": {
+        "whatIs": {
+          "question": "PDFCraft란 무엇인가요?",
+          "answer": "PDFCraft는 브라우저에서 완전히 실행되는 개인정보 보호형 무료 PDF 툴킷입니다. 서버에 파일을 업로드하지 않고도 PDF 편집, 변환, 병합, 분할, 암호화 등 {count}개 이상의 전문적인 도구를 제공합니다."
+        },
+        "isFree": {
+          "question": "PDFCraft는 정말 무료인가요?",
+          "answer": "네, PDFCraft는 완전히 무료입니다. 숨겨진 비용이나 프리미엄 구독, 가입이 필요하지 않습니다. 모든 기능을 누구나 자유롭게 이용할 수 있습니다."
+        },
+        "account": {
+          "question": "계정을 만들어야 하나요?",
+          "answer": "아니요, PDFCraft를 사용하기 위해 계정을 만들거나 등록할 필요가 없습니다. 웹사이트에 접속하기만 하면 즉시 모든 도구를 사용할 수 있습니다."
+        }
+      },
+      "privacy": {
+        "uploaded": {
+          "question": "제 파일이 서버에 업로드되나요?",
+          "answer": "아니요, 귀하의 파일은 절대 서버에 업로드되지 않습니다. 모든 PDF 처리는 JavaScript와 WebAssembly를 사용하여 브라우저 내에서 로컬로 수행됩니다. 파일은 귀하의 장치를 절대 떠나지 않습니다."
+        },
+        "safe": {
+          "question": "민감한 문서에 PDFCraft를 사용해도 안전한가요?",
+          "answer": "네, PDFCraft는 개인정보 보호를 최우선으로 설계되었습니다. 모든 작업이 브라우저 내에서 로컬로 처리되므로 민감한 문서는 장치에 그대로 유지되며 인터넷을 통해 전송되지 않습니다."
+        },
+        "storage": {
+          "question": "처리 후 파일은 어떻게 되나요?",
+          "answer": "파일은 처리되는 동안 브라우저 메모리에 임시로 저장됩니다. 브라우저 탭을 닫거나 페이지를 벗어나면 모든 파일 데이터가 자동으로 삭제됩니다. 당사는 어떠한 파일도 저장하지 않습니다."
+        }
+      },
+      "features": {
+        "operations": {
+          "question": "어떤 PDF 작업을 할 수 있나요?",
+          "answer": "PDFCraft는 병합, 분할, 압축, 변환(이미지, 텍스트, JSON 등), 편집, 주석 추가, 서명, 워터마크, 암호화/복호화, OCR 등 {count}개 이상의 도구를 제공합니다."
+        },
+        "merge": {
+          "question": "여러 PDF 파일을 하나로 합칠 수 있나요?",
+          "answer": "네, 여러 PDF 파일을 하나로 병합할 수 있습니다. PDF 병합 도구를 사용해 파일을 업로드하고 원하는 순서로 정렬한 다음 병합을 클릭하세요."
+        },
+        "images": {
+          "question": "이미지를 PDF로 변환할 수 있나요?",
+          "answer": "네, PDFCraft는 다양한 이미지 형식(JPG, PNG, WebP, BMP, TIFF, SVG, HEIC)의 PDF 변환을 지원합니다. 한 장 또는 여러 장의 이미지를 동시에 변환할 수 있습니다."
+        },
+        "edit": {
+          "question": "PDF 텍스트를 수정할 수 있나요?",
+          "answer": "PDFCraft는 하이라이트, 텍스트 추가, 도형, 이미지, 서명 등 주석 및 편집 도구를 제공합니다. 상세한 텍스트 편집을 원하신다면 PDF 편집기 도구에서 포괄적인 주석 기능을 사용해 보세요."
+        }
+      },
+      "technical": {
+        "browsers": {
+          "question": "어떤 브라우저를 지원하나요?",
+          "answer": "PDFCraft는 Chrome, Firefox, Safari, Edge 등 모든 최신 브라우저에서 작동합니다. 최적의 경험을 위해 최신 버전의 브라우저를 사용하실 것을 권장합니다."
+        },
+        "sizeLimit": {
+          "question": "파일 크기 제한이 있나요?",
+          "answer": "대부분의 도구는 최대 100MB의 파일을 지원하며, 병합 및 압축과 같은 일부 도구는 최대 500MB까지 지원합니다. 이는 브라우저에서의 원활한 동작을 보장하기 위한 제한입니다."
+        },
+        "slow": {
+          "question": "대용량 파일의 처리 속도가 느린 이유는 무엇인가요?",
+          "answer": "모든 처리가 브라우저 내에서 이루어지기 때문에 성능은 장치 사양에 달려 있습니다. 큰 파일은 더 많은 메모리와 처리 능력을 필요로 합니다. 더 나은 결과를 위해 다른 탭이나 프로그램을 닫아주세요."
+        },
+        "offline": {
+          "question": "PDFCraft를 오프라인에서 사용할 수 있나요?",
+          "answer": "현재 초기 앱 로딩을 위해서는 인터넷 연결이 필요합니다. 하지만 로드된 후에는 PDF 처리 자체가 로컬에서 진행되므로 별도의 인터넷 연결 없이도 작업이 가능합니다."
+        }
+      },
+      "languages": {
+        "supported": {
+          "question": "어떤 언어를 지원하나요?",
+          "answer": "PDFCraft는 영어, 일본어, 한국어, 스페인어, 프랑스어, 독일어, 중국어, 포르투갈어, 아랍어(RTL 지원 포함) 등 9개 언어를 지원합니다."
+        },
+        "change": {
+          "question": "언어를 어떻게 변경하나요?",
+          "answer": "페이지 상단의 언어 선택기를 사용해 언어를 변경할 수 있습니다. 선택하신 설정은 다음 방문을 위해 저장됩니다."
+        }
+      }
+    },
+    "cta": {
+      "title": "더 궁금한 점이 있으신가요?",
+      "description": "원하는 답변을 찾지 못하셨나요? 언제든지 문의해 주세요.",
+      "button": "문의하기"
+    }
+  },
+  "aboutPage": {
+    "title": "{brand} 소개",
+    "description": "{brand}는 브라우저에서 완전히 실행되는 무료 개인정보 보호 중심 PDF 툴킷입니다. {count}개 이상의 전문 도구를 사용하여 파일을 서버에 업로드하지 않고도 PDF 파일을 편집, 변환, 병합, 분할 및 보안 처리를 할 수 있습니다.",
+    "mission": {
+      "title": "우리의 임무",
+      "p1": "우리는 개인정보를 타협하거나 값비싼 구독료를 내지 않고도 누구나 강력한 PDF 도구를 사용할 수 있어야 한다고 믿습니다. 이것이 바로 개인정보를 최우선으로 하는 종합 PDF 툴킷인 {brand}를 만든 이유입니다.",
+      "p2": "파일을 원격 서버에 업로드해야 하는 기존 PDF 서비스와 달리, {brand}는 브라우저에서 로컬로 모든 것을 처리합니다. 민감한 문서는 장치를 떠나지 않으므로 데이터를 완전히 제어할 수 있습니다.",
+      "p3": "학생, 전문가 또는 일반 사용자이든 상관없이 {brand}는 PDF를 효율적이고 안전하게 작업하는 데 필요한 모든 도구를 제공합니다."
+    },
+    "values": {
+      "title": "우리의 가치",
+      "privacy": {
+        "title": "개인정보 최우선",
+        "description": "파일은 절대로 장치를 떠나지 않습니다. 모든 처리는 브라우저 내에서 로컬로 이루어져 완전한 개인정보 보호와 보안을 보장합니다."
+      },
+      "fast": {
+        "title": "빠르고 효율적",
+        "description": "최신 웹 기술을 기반으로 하는 PDFCraft는 업로드나 다운로드 없이 번개처럼 빠른 PDF 처리를 제공합니다."
+      },
+      "accessible": {
+        "title": "교통이 편리한",
+        "description": "9개 언어로 제공되며 최신 브라우저가 있는 모든 장치에서 작동합니다. 설치가 필요하지 않습니다."
+      },
+      "free": {
+        "title": "영원히 무료",
+        "description": "PDFCraft는 숨겨진 비용, 등록 절차, 사용 제한 없이 완전히 무료로 사용할 수 있습니다."
+      },
+      "openSource": {
+        "title": "오픈 소스",
+        "description": "투명성을 염두에 두고 구축되었습니다. 당사의 코드는 오픈 소스이므로 누구나 당사의 개인정보 보호 주장을 검증할 수 있습니다."
+      },
+      "community": {
+        "title": "커뮤니티 중심",
+        "description": "전 세계 사용자의 피드백을 바탕으로 개발되었습니다. 우리는 사용자의 요구에 따라 지속적으로 개선해 나갑니다."
+      }
+    },
+    "technology": {
+      "title": "현대 기술로 구축",
+      "description": "{brand}는 가능한 최고의 경험을 보장하기 위해 최첨단 웹 기술을 사용하여 구축되었습니다.",
+      "list": {
+        "nextjs": "<strong1>Next.js</strong1> - 빠르고 SEO에 친숙한 페이지 렌더링을 위해",
+        "wasm": "<strong1>WebAssembly</strong1> - 네이티브에 가까운 PDF 처리 성능을 위해",
+        "workers": "<strong1>Web Workers</strong1> - 비차단 백그라운드 처리를 위해",
+        "pdflib": "<strong1>pdf-lib & PDF.js</strong1> - 업계 표준 PDF 조작 라이브러리",
+        "indexeddb": "<strong1>IndexedDB</strong1> - 작업물의 안전한 로컬 저장소를 위해"
+      },
+      "summary": "이러한 기술의 조합을 통해 서버 측 처리 없이 브라우저에서 완전히 실행되는 전문가 수준의 PDF 도구를 제공할 수 있습니다."
+    },
+    "cta": {
+      "title": "시작할 준비가 되셨나요?",
+      "description": "{count}개 이상의 PDF 도구를 살펴보고 {brand}가 귀하를 위해 무엇을 할 수 있는지 확인해 보세요.",
+      "button": "모든 도구 탐색"
+    }
+  },
+  "contactPage": {
+    "hero": {
+      "title": "문의하기",
+      "description": "질문, 제안 사항이 있거나 버그를 발견하셨나요? 귀하의 의견을 기다립니다."
+    },
+    "methods": {
+      "email": {
+        "title": "이메일",
+        "description": "이메일을 보내주시면 24~48시간 이내에 답변해 드리겠습니다.",
+        "action": "contact@pdfcraft.app"
+      },
+      "github": {
+        "title": "GitHub",
+        "description": "버그 보고, 기능 요청 또는 프로젝트에 기여하세요.",
+        "action": "GitHub에서 보기"
+      },
+      "twitter": {
+        "title": "Twitter",
+        "description": "업데이트 및 공지 사항을 확인하려면 팔로우하세요.",
+        "action": "@pdfcraft"
+      }
+    },
+    "form": {
+      "title": "메시지 보내기",
+      "description": "아래 양식을 작성해 주시면 최대한 빨리 연락드리겠습니다.",
+      "success": {
+        "title": "메시지 전송 완료!",
+        "description": "문의해 주셔서 감사합니다. 24~48시간 이내에 연락드리겠습니다.",
+        "button": "다른 메시지 보내기"
+      },
+      "fields": {
+        "name": {
+          "label": "이름",
+          "placeholder": "귀하의 이름"
+        },
+        "email": {
+          "label": "이메일",
+          "placeholder": "your@email.com"
+        },
+        "subject": {
+          "label": "제목",
+          "placeholder": "제목 선택",
+          "options": {
+            "general": "일반 문의",
+            "bug": "버그 보고",
+            "feature": "기능 요청",
+            "feedback": "피드백",
+            "other": "기타"
+          }
+        },
+        "message": {
+          "label": "메시지",
+          "placeholder": "문의 내용에 대해 더 자세히 알려주세요..."
+        }
+      },
+      "error": "문제가 발생했습니다. 다시 시도하거나 이메일로 직접 문의해 주세요.",
+      "submit": {
+        "loading": "보내는 중...",
+        "default": "메시지 보내기"
+      }
+    },
+    "faq": {
+      "title": "빠른 답변을 원하시나요?",
+      "description": "{brand}에 대한 자주 묻는 질문은 FAQ 페이지에서 확인하세요.",
+      "button": "FAQ 보기"
+    }
+  }
+}

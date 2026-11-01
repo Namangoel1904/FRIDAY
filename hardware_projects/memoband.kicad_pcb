@@ -1,0 +1,43 @@
+(kicad_pcb (version 20240108) (generator "pcbnew")
+  (paper "A4")
+  (layers
+    (0 "F.Cu" signal)
+    (31 "B.Cu" signal)
+    (44 "Edge.Cuts" user)
+  )
+
+  (gr_poly
+    (pts
+      (xy 0 0)
+      (xy 50 0)
+      (xy 50 30)
+      (xy 0 30)
+      (xy 0 0)
+    )
+    (stroke (width 0.1) (type default))
+    (fill (type none))
+    (layer "Edge.Cuts")
+  )
+
+  (footprint "Module:ESP32-C3-WROOM-02" (layer "F.Cu") (tedit 6690500A)
+    (at 25 10)
+    (descr "ESP32-C3-WROOM-02 module, 2mm pitch, 38 pins")
+    (tags "wifi ble module esp esp32-c3 espressif")
+    (property "Reference" "U1" (at 0 32) (layer "F.SilkS") (effects (font (size 1.27 1.27) (thickness 0.25))))
+    (property "Value" "ESP32-C3" (at 0 -5) (layer "F.Fab") (effects (font (size 1.27 1.27) (thickness 0.25))))
+    (pad "1" smd (at -14.1 12.7) (size 0.6 1.8) (layers "F.Cu F.Paste F.Mask"))
+    (pad "2" smd (at -14.1 10.7) (size 0.6 1.8) (layers "F.Cu F.Paste F.Mask"))
+    (pad "38" smd (at 14.1 -12.7) (size 0.6 1.8) (layers "F.Cu F.Paste F.Mask"))
+  )
+
+  (footprint "MEMS:MP45DT02" (layer "F.Cu") (tedit 6690500B)
+    (at 10 10)
+    (descr "INMP441 PDM Microphone breakout substitute")
+    (tags "mems mic pdm digital")
+    (property "Reference" "MIC1" (at 0 5) (layer "F.SilkS") (effects (font (size 1.0 1.0) (thickness 0.15))))
+    (property "Value" "INMP441" (at 0 -5) (layer "F.Fab") (effects (font (size 1.0 1.0) (thickness 0.15))))
+    (pad "1" smd (at -1.25 1.25) (size 0.5 0.5) (layers "F.Cu F.Paste F.Mask"))
+    (pad "VCC" smd (at 1.25 1.25) (size 0.5 0.5) (layers "F.Cu F.Paste F.Mask"))
+  )
+
+)
