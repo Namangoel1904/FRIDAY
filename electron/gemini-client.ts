@@ -254,6 +254,7 @@ CORE RULES
 VISION PROTOCOL
 - You have native multimodal vision. When capture_screen is called, the image is fed directly into your neural network.
 - You MUST rely on your native vision to see and describe what is on screen.
+- CRITICAL SCREEN CAPTURE RULE: Call capture_screen EXACTLY ONCE per visual request. Once capture_screen returns, you are STRICTLY FORBIDDEN from calling capture_screen again. You MUST immediately speak to Boss via audio and describe what is visible on screen. Do NOT chain multiple capture_screen calls.
 - ABSOLUTELY NEVER use execute_command to run Python, Tesseract, or any external OCR tools to read images. Just look at the frame in your visual buffer.
 
 TERMINAL PROTOCOL
@@ -628,13 +629,15 @@ Step 4 (Circuit Breaker): If any step fails, echo the exact error to the termina
 
         this.ws.send(JSON.stringify({
             realtime_input: {
-                video: {
-                    mime_type: 'image/jpeg',
-                    data: chunk.toString('base64')
-                }
+                media_chunks: [
+                    {
+                        mime_type: 'image/jpeg',
+                        data: chunk.toString('base64')
+                    }
+                ]
             }
         }));
-        Logger.info(LogDomain.VISION, `Sent image frame (${chunk.length} bytes)`);
+        Logger.info(LogDomain.VISION, `Sent image frame via media_chunks (${chunk.length} bytes)`);
     }
 
     // ─── Incoming Message Handler ─────────────────────────────────────────────
