@@ -433,9 +433,12 @@ export class NeedleRouter {
     private normalizeTranscript(raw: string): string {
         let text = raw.trim();
 
-        // 1. Phonetic fixes for common speech-to-text slips on Windows folders
+        // 1. Phonetic fixes for common speech-to-text slips on Windows folders and web targets
         // e.g. "down those bullets" / "download spoilers" / "down those" -> "downloads folder"
         text = text.replace(/\b(down\s*those\s*(bullets|spoilers|folders?|files?)?|download\s*spoilers?)\b/gi, 'downloads folder');
+
+        // "you, duke" / "you duke" -> "youtube"
+        text = text.replace(/\byou[,\s]+duke\b/gi, 'youtube');
 
         // "open down those..." -> "open downloads folder"
         text = text.replace(/\bopen\s+down\s+those\b/gi, 'open downloads folder');
